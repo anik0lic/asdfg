@@ -34,7 +34,9 @@ public class DelayedMessageSender implements Runnable {
 		}
 		
 		if (MessageUtil.MESSAGE_UTIL_PRINTING) {
-			AppConfig.timestampedStandardPrint("Sending message " + messageToSend);
+//			AppConfig.timestampedStandardPrint("Sending message " + messageToSend.);
+			AppConfig.timestampedStandardPrint("Sending message " + messageToSend.getMessageType() + " from " +
+					messageToSend.getSenderPort() + " to " + messageToSend.getReceiverPort() + " | " + messageToSend.getMessageId() + " | " + messageToSend.getMessageText());
 		}
 		
 		try {

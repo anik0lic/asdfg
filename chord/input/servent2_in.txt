@@ -1,3 +1,17 @@
-pause 30000
+pause 10000
+visibility public
+pause 13000
+follow 1400
+pause 10000
+upload shared/third.txt
+pause 10000
+follow 1600
+pause 3000
+list_files 1200
+pause 10000
+accept 1400
+pause 10000
+pending
+followers
 pause 10000
 stop

@@ -1,6 +1,12 @@
+pause 14000
+visibility public
+pause 13000
+upload videos/video.mp4
 pause 10000
-dht_put 25 3
-pause 4000
-dht_get 25
-pause 6000
+list_files 1100
+pause 10000
+pending
+pause 3000
+followers
+pause 10000
 stop

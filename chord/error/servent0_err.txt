@@ -1,0 +1,1 @@
+17:48:59 - File path: files/fajl1.txt, Hash: 611166, Key: 38

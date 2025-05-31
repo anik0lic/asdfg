@@ -28,7 +28,7 @@ public class MessageUtil {
 	public static final boolean MESSAGE_UTIL_PRINTING = true;
 	
 	public static Message readMessage(Socket socket) {
-		
+
 		Message clientMessage = null;
 			
 		try {
@@ -45,7 +45,9 @@ public class MessageUtil {
 		}
 		
 		if (MESSAGE_UTIL_PRINTING) {
-			AppConfig.timestampedStandardPrint("Got message " + clientMessage);
+            assert clientMessage != null;
+            AppConfig.timestampedStandardPrint("Got message " + clientMessage.getMessageType() + " from " +
+					clientMessage.getSenderPort() + " to " + clientMessage.getReceiverPort() + " | " + clientMessage.getMessageId() + " | " + clientMessage.getMessageText());
 		}
 				
 		return clientMessage;

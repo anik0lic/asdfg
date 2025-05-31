@@ -1,18 +1,20 @@
 package servent.handler;
 
 import app.AppConfig;
-import app.ServentInfo;
-import servent.message.ListFilesMessage;
 import servent.message.ListFilesResponseMessage;
 import servent.message.Message;
 import servent.message.MessageType;
 import servent.message.util.MessageUtil;
 
-import java.util.List;
+import java.util.Map;
 
 public class ListFilesHandler implements MessageHandler {
 
     private Message clientMessage;
+
+    public ListFilesHandler(Message clientMessage) {
+        this.clientMessage = clientMessage;
+    }
 
     @Override
     public void run() {
@@ -21,26 +23,25 @@ public class ListFilesHandler implements MessageHandler {
             return;
         }
 
-        int chordId = Integer.parseInt(clientMessage.getMessageText());
-
-        if (AppConfig.chordState.isKeyMine(chordId)) {
-            boolean allowed = AppConfig.chordState.isVisibility() ||
+        boolean allowed = AppConfig.chordState.isVisibility() ||
                     AppConfig.chordState.getFollowers().contains(clientMessage.getSenderPort());
 
-            if (!allowed) {
-                AppConfig.timestampedErrorPrint("Access denied to Node " + clientMessage.getSenderPort());
-                return;
-            }
+        if (!allowed) {
+            AppConfig.timestampedErrorPrint("Access denied to Node " + clientMessage.getSenderPort());
+            return;
+        }
 
-            // If the key is mine, respond with the files
-            List<String> files = AppConfig.chordState.getFiles();
-            String content = String.join(",", files);
-            MessageUtil.sendMessage(new ListFilesResponseMessage(clientMessage.getReceiverPort(), clientMessage.getSenderPort(), content));
+        Map<Integer, String> valueMap = AppConfig.chordState.getValueMap();
+        AppConfig.timestampedStandardPrint("ValueMap in list handler: " + valueMap + " for node" + AppConfig.myServentInfo.getListenerPort());
+        if (valueMap == null || valueMap.isEmpty()) {
+            AppConfig.timestampedStandardPrint("No files found in the directory for node " + clientMessage.getReceiverPort() + " sending empty response to " + clientMessage.getSenderPort());
+            MessageUtil.sendMessage(new ListFilesResponseMessage(clientMessage.getReceiverPort(), clientMessage.getSenderPort(), null));
+            return;
         }
-        else {
-            ServentInfo nextNode = AppConfig.chordState.getNextNodeForKey(chordId);
-            MessageUtil.sendMessage(new ListFilesMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(chordId)));
-        }
+
+        AppConfig.timestampedStandardPrint("Files " + valueMap + " files to string " + valueMap + " for node " + clientMessage.getSenderPort());
+        AppConfig.timestampedStandardPrint("Files found in the directory for node " + clientMessage.getReceiverPort() + " sending empty response to " + clientMessage.getSenderPort());
+        MessageUtil.sendMessage(new ListFilesResponseMessage(clientMessage.getReceiverPort(), clientMessage.getSenderPort(), valueMap.toString()));
     }
 
 }

@@ -20,13 +20,10 @@ public class ListFilesResponseHandler implements MessageHandler {
         }
 
         if (clientMessage.getMessageText() == null || clientMessage.getMessageText().isEmpty()) {
-            AppConfig.timestampedStandardPrint("No files in the directory");
+            AppConfig.timestampedStandardPrint("No files found in the directory for node." + clientMessage.getSenderPort());
         } else {
-            String[] files = clientMessage.getMessageText().split(",");
-            AppConfig.timestampedStandardPrint("Files in the directory:");
-            for (String file : files) {
-                AppConfig.timestampedStandardPrint(file.trim());
-            }
+            String files = clientMessage.getMessageText();
+            AppConfig.timestampedStandardPrint("Files in the directory: " + files + " from node " + clientMessage.getSenderPort());
         }
     }
 }

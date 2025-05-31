@@ -1,5 +1,13 @@
-pause 40000
-pause 5000
-dht_get 2
-pause 5000
+pause 10000
+follow 1100
+pause 10000
+upload docs/data2.txt
+pause 10000
+visibility private
+pause 3000
+list_files 1400
+pause 10000
+pending
+followers
+pause 12000
 stop

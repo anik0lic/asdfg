@@ -1,14 +1,33 @@
-14:38:01 - Starting servent [24|localhost|1400]
-14:38:01 - Pausing for 20000 ms
-14:38:03 - Sending message [24|1400|0||NEW_NODE|1300|4]
-14:38:04 - Got message [28|1100|4||WELCOME|1400|24]
-14:38:06 - Sending message [24|1400|1||UPDATE|1100|28]
-14:38:09 - Got message [24|1400|3|1100,1200,1300|UPDATE|1400|24]
-14:38:16 - Got message [0|1600|5|1300|UPDATE|1400|24]
-14:38:16 - Sending message [0|1600|2|1300,1400|UPDATE|1100|28]
-14:38:21 - Pausing for 10000 ms
-14:38:22 - Got message [0|1600|2|25:3|PUT|1400|24]
-14:38:23 - Sending message [24|1400|3|25:3|PUT|1100|28]
-14:38:26 - Got message [0|1600|4|25|ASK_GET|1400|24]
-14:38:27 - Sending message [0|1600|4|25|ASK_GET|1100|28]
-14:38:31 - Stopping...
+17:48:56 - Starting servent [24|localhost|1400]
+17:48:56 - Pausing for 12000 ms
+17:48:57 - Sending message NEW_NODE from 1400 to 1100 | 0 | 
+17:48:59 - Got message WELCOME from 1100 to 1400 | 4 | 
+17:49:00 - Sending message UPDATE from 1400 to 1100 | 1 | 
+17:49:04 - Got message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
+17:49:08 - Starting code for following node with chord id: 1300 and port: 1300
+17:49:08 - Node 1300 added as a pending follower for node: 1400
+17:49:08 - Visibility set to public.
+17:49:08 - File uploaded successfully: media/image.png with key: 23
+17:49:08 - Pausing for 12000 ms
+17:49:10 - Got message LIST_FILES from 1200 to 1400 | 5 | 
+17:49:10 - ValueMap in list handler: {23=media/image.png} for node1400
+17:49:10 - Files {23=media/image.png} files to string {23=media/image.png} for node 1200
+17:49:10 - Files found in the directory for node 1400 sending empty response to 1200
+17:49:10 - Got message UPDATE from 1600 to 1400 | 5 | 1300
+17:49:11 - Sending message UPDATE from 1600 to 1100 | 3 | 1300,1400
+17:49:12 - Sending message LIST_FILES_RESPONSE from 1400 to 1200 | 2 | {23=media/image.png}
+17:49:20 - Sending message to node 1300 to list files, from node 1400
+17:49:20 - ValueMap: {23=media/image.png}
+17:49:20 - Pausing for 10000 ms
+17:49:20 - Got message PUT from 1300 to 1400 | 6 | 37:shared/third.txt
+17:49:21 - Sending message LIST_FILES from 1400 to 1300 | 4 | 
+17:49:21 - Sending message PUT from 1400 to 1100 | 5 | 37:shared/third.txt
+17:49:22 - Got message LIST_FILES_RESPONSE from 1300 to 1400 | 7 | null
+17:49:22 - No files found in the directory for node.1300
+17:49:30 - Pending followers: [1300]
+17:49:30 - Pausing for 10000 ms
+17:49:35 - Got message PUT from 1300 to 1400 | 9 | 13:videos/video.mp4
+17:49:40 - Pausing for 3000 ms
+17:49:43 - Followers: []
+17:49:43 - Pausing for 12000 ms
+17:49:55 - Stopping...

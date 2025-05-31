@@ -53,7 +53,7 @@ public class ChordState {
 	private Set<Integer> pendingFollowers;
 	private Set<Integer> followers;
 
-	private List<String> files;
+//	private List<String> files;
 
 	private boolean visibility;
 	
@@ -76,9 +76,11 @@ public class ChordState {
 		predecessorInfo = null;
 		valueMap = new HashMap<>();
 		allNodeInfo = new ArrayList<>();
+//		pendingFollowers = new HashMap<>();
+//		followers = new HashMap<>();
 		pendingFollowers = ConcurrentHashMap.newKeySet();
 		followers = ConcurrentHashMap.newKeySet();
-		files = new ArrayList<>();
+//		files = new ArrayList<>();
 		visibility = true;
 	}
 	
@@ -138,10 +140,6 @@ public class ChordState {
 
 	public Set<Integer> getPendingFollowers() { return pendingFollowers; }
 	public Set<Integer> getFollowers() { return followers; }
-
-	public List<String> getFiles() {
-		return files;
-	}
 
 	public boolean isVisibility() { return visibility; }
 	public void setVisibility(boolean visibility) { this.visibility = visibility; }
@@ -382,22 +380,24 @@ public class ChordState {
 		return "-2";
 	}
 
-	public void followRequest(int chordId) {
-
+	public void followNode(int nodeToFollow) {
+			if (pendingFollowers.contains(nodeToFollow)){
+				AppConfig.timestampedStandardPrint("Node " + nodeToFollow + " is already a pending follower for node: " + AppConfig.myServentInfo.getListenerPort());
+			} else {
+				pendingFollowers.add(nodeToFollow);
+				AppConfig.timestampedStandardPrint("Node " + nodeToFollow + " added as a pending follower for node: " + AppConfig.myServentInfo.getListenerPort());
+			}
 	}
 
-	public void followNode(int chordId) {
-//		if (chordId == AppConfig.myServentInfo.getChordId()) {
-//			AppConfig.timestampedErrorPrint("Can't follow itself");
-//			return;
-//		}
+	public void acceptFollower(int nodeToAccept) {
+        if(!pendingFollowers.contains(nodeToAccept)) {
+            AppConfig.timestampedErrorPrint("Port " + nodeToAccept + " is not in the list of pending followers.");
+        } else {
+			pendingFollowers.remove(nodeToAccept);
+			followers.add(nodeToAccept);
 
-		if (AppConfig.chordState.isKeyMine(chordId)) {
-			AppConfig.timestampedErrorPrint("no");
-		} else {
-			ServentInfo nextNode = getNextNodeForKey(chordId);
-			MessageUtil.sendMessage(new FollowMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(chordId)));
-		}
+            AppConfig.timestampedStandardPrint("Accepted follower: " + nodeToAccept);
+        }
 	}
 
 	public void removeFile(int key, String path) {
@@ -406,7 +406,7 @@ public class ChordState {
 				String value = valueMap.get(key);
 				if (value.equals(path)) {
 					valueMap.remove(key);
-					files.remove(path);
+//					files.remove(path);
 					AppConfig.timestampedStandardPrint("File removed successfully: " + path + " with key: " + key);
 				} else {
 					AppConfig.timestampedErrorPrint("File not found in value map for key: " + key);

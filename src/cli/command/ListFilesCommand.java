@@ -6,7 +6,10 @@ import servent.message.ListFilesMessage;
 import servent.message.ListFilesResponseMessage;
 import servent.message.util.MessageUtil;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ListFilesCommand implements CLICommand {
     @Override
@@ -16,40 +19,29 @@ public class ListFilesCommand implements CLICommand {
 
     @Override
     public void execute(String args) {
-        String[] splitArgs = args.split(" ");
-        if (splitArgs.length != 2) {
-            AppConfig.timestampedErrorPrint("Invalid list_files command. Usage: list_files [address:port]");
-            return;
-        }
+//        String[] splitArgs = args.split(" ");
+//        if (splitArgs.length != 2) {
+//            AppConfig.timestampedErrorPrint("Invalid list_files command. Usage: list_files [address:port]");
+//            return;
+//        }
 
         int port;
 
         try {
-            port = Integer.parseInt(splitArgs[0]);
+//            port = Integer.parseInt(splitArgs[0]);
+            port = Integer.parseInt(args);
         } catch (NumberFormatException e) {
             AppConfig.timestampedErrorPrint("Invalid port number in follow command.");
             return;
         }
 
-        int chordId = AppConfig.chordState.chordHash(port);
-
-        if (AppConfig.chordState.isKeyMine(chordId)) {
-//            AppConfig.chordState.getFiles(AppConfig.myServentInfo.getListenerPort(), true);
-            boolean allowed = AppConfig.chordState.isVisibility() ||
-                    AppConfig.chordState.getFollowers().contains(AppConfig.myServentInfo.getListenerPort());
-
-            if (!allowed) {
-                AppConfig.timestampedErrorPrint("Access denied to Node " + AppConfig.myServentInfo.getListenerPort());
-                return;
-            }
-
-            // If the key is mine, respond with the files
-            List<String> files = AppConfig.chordState.getFiles();
-            String content = String.join(",", files);
-//            MessageUtil.sendMessage(new ListFilesResponseMessage(clientMessage.getReceiverPort(), clientMessage.getSenderPort(), content));
+        if (port == AppConfig.myServentInfo.getListenerPort()) {
+            AppConfig.timestampedErrorPrint("Files for this node: " + AppConfig.myServentInfo.getListenerPort() + " are: " + AppConfig.chordState.getValueMap());
         } else {
-            ServentInfo nextNode = AppConfig.chordState.getNextNodeForKey(chordId);
-            MessageUtil.sendMessage(new ListFilesMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(chordId)));
+            AppConfig.timestampedStandardPrint("Sending message to node " + port + " to list files, from node " + AppConfig.myServentInfo.getListenerPort());
+            MessageUtil.sendMessage(new ListFilesMessage(AppConfig.myServentInfo.getListenerPort(), port));
         }
+
+        AppConfig.timestampedStandardPrint("ValueMap: " + AppConfig.chordState.getValueMap());
     }
 }
