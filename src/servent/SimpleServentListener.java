@@ -79,6 +79,9 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					case TELL_GET:
 						messageHandler = new TellGetHandler(clientMessage);
 						break;
+					case REMOVE_NODE:
+						messageHandler = new RemoveNodeHandler(clientMessage);
+						break;
 					case LIST_FILES:
 						messageHandler = new ListFilesHandler(clientMessage);
 						break;

@@ -1,41 +1,19 @@
-17:48:26 - Starting servent [28|localhost|1100]
-17:48:26 - Pausing for 10000 ms
-17:48:26 - First node in Chord system.
-17:48:36 - Visibility set to public.
-17:48:36 - Pausing for 13000 ms
-17:48:37 - Got message NEW_NODE from 1200 to 1100 | 0 | 
-17:48:38 - Sending message WELCOME from 1100 to 1200 | 0 | 
-17:48:38 - Got message UPDATE from 1200 to 1100 | 1 | 
-17:48:40 - Sending message UPDATE from 1200 to 1200 | 1 | 1100
-17:48:47 - Got message NEW_NODE from 1300 to 1100 | 0 | 
-17:48:48 - Sending message WELCOME from 1100 to 1300 | 2 | 
-17:48:49 - Starting code for following node with chord id: 1200 and port: 1200
-17:48:49 - Node 1200 added as a pending follower for node: 1100
-17:48:49 - Pausing for 10000 ms
-17:48:49 - Got message UPDATE from 1300 to 1100 | 1 | 
-17:48:50 - Sending message UPDATE from 1300 to 1200 | 3 | 1100
-17:48:57 - Got message NEW_NODE from 1400 to 1100 | 0 | 
-17:48:58 - Got message PUT from 1300 to 1100 | 2 | 26:docs/data2.txt
-17:48:59 - Sending message WELCOME from 1100 to 1400 | 4 | 
-17:48:59 - File uploaded successfully: files/fajl1.txt with key: 38
-17:48:59 - Pausing for 10000 ms
-17:49:00 - Got message UPDATE from 1400 to 1100 | 1 | 
-17:49:00 - Sending message PUT from 1100 to 1200 | 5 | 38:files/fajl1.txt
-17:49:01 - Sending message UPDATE from 1400 to 1200 | 6 | 1100
-17:49:09 - Sending message to node 1600 to list files, from node 1100
-17:49:09 - ValueMap: {26=docs/data2.txt}
-17:49:09 - Pausing for 10000 ms
-17:49:10 - Sending message LIST_FILES from 1100 to 1600 | 7 | 
-17:49:11 - Got message LIST_FILES_RESPONSE from 1600 to 1100 | 2 | null
-17:49:11 - No files found in the directory for node.1600
-17:49:11 - Got message UPDATE from 1600 to 1100 | 3 | 1300,1400
-17:49:12 - Sending message UPDATE from 1600 to 1200 | 8 | 1300,1400,1100
-17:49:19 - Accepting following node with chord id: 1200
-17:49:19 - Accepted follower: 1200
-17:49:19 - Pausing for 5000 ms
-17:49:21 - Got message PUT from 1400 to 1100 | 5 | 37:shared/third.txt
-17:49:22 - Sending message PUT from 1100 to 1200 | 9 | 37:shared/third.txt
-17:49:24 - Pending followers: []
-17:49:24 - Followers: [1200]
-17:49:24 - Pausing for 13000 ms
-17:49:37 - Stopping...
+19:28:22 - Starting servent [28|localhost|1100]
+19:28:22 - Pausing for 10000 ms
+19:28:22 - First node in Chord system.
+19:28:32 - Visibility set to public.
+19:28:32 - File uploaded successfully: docs/stoptest.txt with key: 26
+19:28:32 - Pausing for 13000 ms
+19:28:34 - Got message NEW_NODE from 1200 to 1100 | 0 | 
+19:28:35 - Sending message WELCOME from 1100 to 1200 | 0 | 
+19:28:36 - Got message UPDATE from 1200 to 1100 | 1 | 
+19:28:37 - Sending message UPDATE from 1200 to 1200 | 1 | 1100
+19:28:44 - Got message NEW_NODE from 1300 to 1100 | 2 | 
+19:28:45 - Starting code for following node with chord id: 1200 and port: 1200
+19:28:45 - Node 1200 added as a pending follower for node: 1100
+19:28:45 - Stopping...
+19:28:45 - Transferring responsibilities to successor at port 1200
+19:28:45 - Node at port 1100 has stopped.
+19:28:46 - Sending message WELCOME from 1100 to 1300 | 2 | 
+19:28:46 - Sending message REMOVE_NODE from 1100 to 1200 | 3 | 
+19:28:46 - Got message UPDATE from 1300 to 1100 | 1 | 

@@ -53,10 +53,10 @@ public class ChordState {
 	private Set<Integer> pendingFollowers;
 	private Set<Integer> followers;
 
-//	private List<String> files;
-
 	private boolean visibility;
-	
+
+	private SuzukiKasamiState suzukiKasamiState;
+
 	public ChordState() {
 		this.chordLevel = 1;
 		int tmp = CHORD_SIZE;
@@ -76,12 +76,11 @@ public class ChordState {
 		predecessorInfo = null;
 		valueMap = new HashMap<>();
 		allNodeInfo = new ArrayList<>();
-//		pendingFollowers = new HashMap<>();
-//		followers = new HashMap<>();
 		pendingFollowers = ConcurrentHashMap.newKeySet();
 		followers = ConcurrentHashMap.newKeySet();
-//		files = new ArrayList<>();
 		visibility = true;
+
+		suzukiKasamiState = new SuzukiKasamiState();
 	}
 	
 	/**
@@ -228,6 +227,34 @@ public class ChordState {
 		return successorTable[0];
 	}
 
+	/**
+	 * Attempt to reorganize the Chord while in the critical section.
+	 */
+	public void performReorganization(Runnable reorganizationTask) {
+		// Request entry into critical section
+		suzukiKasamiState.requestCriticalSection();
+
+		while (!suzukiKasamiState.canEnterCriticalSection()) {
+			try {
+				Thread.sleep(1000); // Wait until token is received
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				AppConfig.timestampedErrorPrint("Interrupted while waiting for critical section.");
+			}
+		}
+
+		// Enter the critical section
+		suzukiKasamiState.enterCriticalSection();
+		try {
+			// The critical section (reorganization logic) is executed here
+			reorganizationTask.run();
+		} finally {
+			// Release critical section
+			suzukiKasamiState.releaseCriticalSection();
+		}
+	}
+
+
 	private void updateSuccessorTable() {
 		//first node after me has to be successorTable[0]
 		
@@ -288,19 +315,19 @@ public class ChordState {
 	 */
 	public void addNodes(List<ServentInfo> newNodes) {
 		allNodeInfo.addAll(newNodes);
-		
+
 		allNodeInfo.sort(new Comparator<ServentInfo>() {
-			
+
 			@Override
 			public int compare(ServentInfo o1, ServentInfo o2) {
 				return o1.getChordId() - o2.getChordId();
 			}
-			
+
 		});
-		
+
 		List<ServentInfo> newList = new ArrayList<>();
 		List<ServentInfo> newList2 = new ArrayList<>();
-		
+
 		int myId = AppConfig.myServentInfo.getChordId();
 		for (ServentInfo serventInfo : allNodeInfo) {
 			if (serventInfo.getChordId() < myId) {
@@ -309,16 +336,16 @@ public class ChordState {
 				newList.add(serventInfo);
 			}
 		}
-		
+
 		allNodeInfo.clear();
 		allNodeInfo.addAll(newList);
 		allNodeInfo.addAll(newList2);
 		if (newList2.size() > 0) {
-			predecessorInfo = newList2.get(newList2.size()-1);
+			predecessorInfo = newList2.get(newList2.size() - 1);
 		} else {
-			predecessorInfo = newList.get(newList.size()-1);
+			predecessorInfo = newList.get(newList.size() - 1);
 		}
-		
+
 		updateSuccessorTable();
 	}
 
@@ -342,6 +369,34 @@ public class ChordState {
 		// 3) rekalkuliši ceo successorTable
 		updateSuccessorTable();
 	}
+
+//	public void handleNodeExit(int exitingChordId) {
+//		ServentInfo exitingNode = null;
+//
+//		// Find the exiting node in allNodeInfo
+//		for (ServentInfo si : allNodeInfo) {
+//			if (si.getChordId() == exitingChordId) {
+//				exitingNode = si;
+//				break;
+//			}
+//		}
+//
+//		if (exitingNode != null) {
+//			AppConfig.timestampedStandardPrint("Removing node: " + exitingNode);
+//			removeNode(exitingNode);
+//
+//			// Notify successor to take over the responsibilities
+//			ServentInfo successor = successorTable[0];
+//			if (successor != null) {
+//				MessageUtil.sendMessage(
+//						new TakeKeysMessage(AppConfig.myServentInfo.getListenerPort(), successor.getListenerPort(),
+//								exitingNode.getChordId(), valueMap));
+//			}
+//		} else {
+//			AppConfig.timestampedErrorPrint("Node with ID: " + exitingChordId + " was not found.");
+//		}
+//	}
+
 
 	/**
 	 * The Chord put operation. Stores locally if key is ours, otherwise sends it on.

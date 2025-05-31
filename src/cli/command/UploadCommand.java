@@ -18,7 +18,6 @@ public class UploadCommand implements CLICommand {
 
 //        String filePath = splitArgs[0];
         String filePath = args;
-//        int filePathHash = Math.abs(filePath.);
 
         int filePathNumber = 0;
         int scalingFactor = 1;

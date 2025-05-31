@@ -1,2 +1,2 @@
-17:49:33 - File path: videos/video.mp4, Hash: 722449, Key: 13
-17:49:43 - Couldn't send message: [0|1600|4||LIST_FILES|1100|28]
+19:29:30 - File path: videos/video.mp4, Hash: 722449, Key: 13
+19:29:41 - Couldn't send message: [0|1600|1||LIST_FILES|1100|28]

@@ -3,11 +3,4 @@ follow 1300
 visibility public
 upload media/image.png
 pause 12000
-list_files 1300
-pause 10000
-pending
-pause 10000
-pause 3000
-followers
-pause 12000
 stop

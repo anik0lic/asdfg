@@ -1,1 +1,4 @@
-17:48:56 - File path: docs/data2.txt, Hash: 547682, Key: 26
+19:28:52 - File path: docs/data2.txt, Hash: 547682, Key: 26
+19:28:53 - Couldn't send message: [48|1200|3|26:docs/data2.txt|PUT|1100|28]
+19:29:04 - Couldn't send message: [0|1600|4||NEW_NODE|1100|28]
+19:29:28 - Couldn't send message: [48|1200|6||REMOVE_NODE|1100|28]

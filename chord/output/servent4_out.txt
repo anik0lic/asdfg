@@ -1,24 +1,18 @@
-17:49:06 - Starting servent [0|localhost|1600]
-17:49:06 - Pausing for 14000 ms
-17:49:06 - Sending message NEW_NODE from 1600 to 1300 | 0 | 
-17:49:08 - Got message WELCOME from 1300 to 1600 | 4 | 
-17:49:09 - Sending message UPDATE from 1600 to 1300 | 1 | 
-17:49:10 - Got message LIST_FILES from 1100 to 1600 | 7 | 
-17:49:10 - ValueMap in list handler: {} for node1600
-17:49:10 - No files found in the directory for node 1600 sending empty response to 1100
-17:49:11 - Sending message LIST_FILES_RESPONSE from 1600 to 1100 | 2 | null
-17:49:13 - Got message UPDATE from 1600 to 1600 | 6 | 1300,1400,1100,1200
-17:49:20 - Visibility set to public.
-17:49:20 - Pausing for 13000 ms
-17:49:33 - File uploaded successfully: videos/video.mp4 with key: 13
-17:49:33 - Pausing for 10000 ms
-17:49:34 - Sending message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
-17:49:43 - Sending message to node 1100 to list files, from node 1600
-17:49:43 - ValueMap: {}
-17:49:43 - Pausing for 10000 ms
-17:49:43 - Sending message LIST_FILES from 1600 to 1100 | 4 | 
-17:49:53 - Pending followers: []
-17:49:53 - Pausing for 3000 ms
-17:49:56 - Followers: []
-17:49:56 - Pausing for 10000 ms
-17:50:06 - Stopping...
+19:29:02 - Starting servent [0|localhost|1600]
+19:29:03 - Pausing for 14000 ms
+19:29:03 - Sending message NEW_NODE from 1600 to 1200 | 0 | 
+19:29:17 - Visibility set to public.
+19:29:17 - Pausing for 13000 ms
+19:29:30 - File uploaded successfully: videos/video.mp4 with key: 13
+19:29:30 - Pausing for 10000 ms
+19:29:40 - Sending message to node 1100 to list files, from node 1600
+19:29:40 - ValueMap: {13=videos/video.mp4}
+19:29:40 - Pausing for 10000 ms
+19:29:41 - Sending message LIST_FILES from 1600 to 1100 | 1 | 
+19:29:50 - Pending followers: []
+19:29:50 - Pausing for 3000 ms
+19:29:53 - Followers: []
+19:29:53 - Pausing for 10000 ms
+19:30:03 - Stopping...
+19:30:03 - No successor found. No keys to transfer.
+19:30:03 - Node at port 1600 has stopped.

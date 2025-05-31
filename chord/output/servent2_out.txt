@@ -1,42 +1,36 @@
-17:48:46 - Starting servent [4|localhost|1300]
-17:48:46 - Pausing for 10000 ms
-17:48:47 - Sending message NEW_NODE from 1300 to 1100 | 0 | 
-17:48:48 - Got message WELCOME from 1100 to 1300 | 2 | 
-17:48:49 - Sending message UPDATE from 1300 to 1100 | 1 | 
-17:48:51 - Got message UPDATE from 1300 to 1300 | 2 | 1100,1200
-17:48:56 - Visibility set to public.
-17:48:56 - Pausing for 13000 ms
-17:48:57 - Got message PUT from 1200 to 1300 | 3 | 26:docs/data2.txt
-17:48:58 - Sending message PUT from 1300 to 1100 | 2 | 26:docs/data2.txt
-17:49:02 - Got message UPDATE from 1400 to 1300 | 4 | 1100,1200
-17:49:04 - Sending message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
-17:49:07 - Got message NEW_NODE from 1600 to 1300 | 0 | 
-17:49:08 - Sending message WELCOME from 1300 to 1600 | 4 | 
-17:49:09 - Starting code for following node with chord id: 1400 and port: 1400
-17:49:09 - Node 1400 added as a pending follower for node: 1300
-17:49:09 - Pausing for 10000 ms
-17:49:09 - Got message UPDATE from 1600 to 1300 | 1 | 
-17:49:10 - Sending message UPDATE from 1600 to 1400 | 5 | 1300
-17:49:19 - File uploaded successfully: shared/third.txt with key: 37
-17:49:19 - Pausing for 10000 ms
-17:49:20 - Sending message PUT from 1300 to 1400 | 6 | 37:shared/third.txt
-17:49:21 - Got message LIST_FILES from 1400 to 1300 | 4 | 
-17:49:21 - ValueMap in list handler: {} for node1300
-17:49:21 - No files found in the directory for node 1300 sending empty response to 1400
-17:49:22 - Sending message LIST_FILES_RESPONSE from 1300 to 1400 | 7 | null
-17:49:29 - Starting code for following node with chord id: 1600 and port: 1600
-17:49:29 - Node 1600 added as a pending follower for node: 1300
-17:49:29 - Pausing for 3000 ms
-17:49:32 - Sending message to node 1200 to list files, from node 1300
-17:49:32 - ValueMap: {}
-17:49:32 - Pausing for 10000 ms
-17:49:33 - Sending message LIST_FILES from 1300 to 1200 | 8 | 
-17:49:34 - Got message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
-17:49:35 - Sending message PUT from 1300 to 1400 | 9 | 13:videos/video.mp4
-17:49:42 - Accepting following node with chord id: 1400
-17:49:42 - Accepted follower: 1400
-17:49:42 - Pausing for 10000 ms
-17:49:52 - Pending followers: [1600]
-17:49:52 - Followers: [1400]
-17:49:52 - Pausing for 10000 ms
-17:50:02 - Stopping...
+19:28:42 - Starting servent [4|localhost|1300]
+19:28:42 - Pausing for 10000 ms
+19:28:43 - Sending message NEW_NODE from 1300 to 1200 | 0 | 
+19:28:46 - Got message WELCOME from 1100 to 1300 | 2 | 
+19:28:46 - Sending message UPDATE from 1300 to 1100 | 1 | 
+19:28:52 - Visibility set to public.
+19:28:52 - Pausing for 13000 ms
+19:28:53 - Got message NEW_NODE from 1400 to 1300 | 0 | 
+19:28:54 - Sending message WELCOME from 1300 to 1400 | 2 | 
+19:28:56 - Got message UPDATE from 1400 to 1300 | 1 | 
+19:28:57 - Sending message UPDATE from 1400 to 1400 | 3 | 1300
+19:29:05 - Starting code for following node with chord id: 1400 and port: 1400
+19:29:05 - Node 1400 added as a pending follower for node: 1300
+19:29:05 - Pausing for 10000 ms
+19:29:15 - File uploaded successfully: shared/third.txt with key: 37
+19:29:15 - Pausing for 10000 ms
+19:29:18 - Got message REMOVE_NODE from 1400 to 1300 | 3 | 
+19:29:18 - Taking over responsibilities from node: [24|localhost|1400]
+19:29:18 - Added key: 23, value: media/image.png
+19:29:25 - Starting code for following node with chord id: 1600 and port: 1600
+19:29:25 - Node 1600 added as a pending follower for node: 1300
+19:29:25 - Pausing for 3000 ms
+19:29:28 - Sending message to node 1200 to list files, from node 1300
+19:29:28 - ValueMap: {37=shared/third.txt, 23=media/image.png}
+19:29:28 - Pausing for 12000 ms
+19:29:30 - Sending message LIST_FILES from 1300 to 1200 | 4 | 
+19:29:40 - Accepting following node with chord id: 1400
+19:29:40 - Accepted follower: 1400
+19:29:40 - Pausing for 10000 ms
+19:29:50 - Pending followers: [1600]
+19:29:50 - Followers: [1400]
+19:29:50 - Pausing for 10000 ms
+19:30:01 - Stopping...
+19:30:01 - Transferring responsibilities to successor at port 1400
+19:30:01 - Node at port 1300 has stopped.
+19:30:01 - Sending message REMOVE_NODE from 1300 to 1400 | 5 | 

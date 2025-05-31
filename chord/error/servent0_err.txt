@@ -1,1 +1,1 @@
-17:48:59 - File path: files/fajl1.txt, Hash: 611166, Key: 38
+19:28:32 - File path: docs/stoptest.txt, Hash: 886498, Key: 26

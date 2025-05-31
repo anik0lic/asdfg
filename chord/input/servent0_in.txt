@@ -1,15 +1,6 @@
 pause 10000
 visibility public
+upload docs/stoptest.txt
 pause 13000
 follow 1200
-pause 10000
-upload files/fajl1.txt
-pause 10000
-list_files 1600
-pause 10000
-accept 1200
-pause 5000
-pending
-followers
-pause 13000
 stop

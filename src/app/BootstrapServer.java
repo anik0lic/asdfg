@@ -102,6 +102,7 @@ public class BootstrapServer {
 					int leavingPort = socketScanner.nextInt();
 
 					System.out.println("removing " + leavingPort);
+					AppConfig.timestampedStandardPrint("Servent " + leavingPort + " left the bootstrap.");
 
 					activeServents.removeIf(p -> p == leavingPort);
 					newServentSocket.close();
