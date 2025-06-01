@@ -1,6 +1,1 @@
-16:35:24 - File path: docs/data2.txt, Hash: 547682, Key: 26
-16:35:51 - Access denied to Node 1300
-Exception in thread "Thread-1" java.util.NoSuchElementException: No line found
-	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
-	at cli.CLIParser.run(CLIParser.java:60)
-	at java.base/java.lang.Thread.run(Thread.java:842)
+20:05:51 - Access denied to Node 1300

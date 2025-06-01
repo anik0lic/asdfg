@@ -11,7 +11,7 @@ public class RemoveFileCommand implements CLICommand {
     @Override
     public void execute(String args) {
         String filePath = args;
-//        int filePathHash = filePath.hashCode();
+
         int filePathNumber = 0;
         int scalingFactor = 1;
 

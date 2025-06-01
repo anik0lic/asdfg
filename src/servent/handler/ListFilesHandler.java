@@ -32,15 +32,12 @@ public class ListFilesHandler implements MessageHandler {
         }
 
         Map<Integer, String> valueMap = AppConfig.chordState.getValueMap();
-        AppConfig.timestampedStandardPrint("ValueMap in list handler: " + valueMap + " for node" + AppConfig.myServentInfo.getListenerPort());
         if (valueMap == null || valueMap.isEmpty()) {
             AppConfig.timestampedStandardPrint("No files found in the directory for node " + clientMessage.getReceiverPort() + " sending empty response to " + clientMessage.getSenderPort());
             MessageUtil.sendMessage(new ListFilesResponseMessage(clientMessage.getReceiverPort(), clientMessage.getSenderPort(), null));
             return;
         }
 
-        AppConfig.timestampedStandardPrint("Files " + valueMap + " files to string " + valueMap + " for node " + clientMessage.getSenderPort());
-        AppConfig.timestampedStandardPrint("Files found in the directory for node " + clientMessage.getReceiverPort() + " sending empty response to " + clientMessage.getSenderPort());
         MessageUtil.sendMessage(new ListFilesResponseMessage(clientMessage.getReceiverPort(), clientMessage.getSenderPort(), valueMap.toString()));
     }
 

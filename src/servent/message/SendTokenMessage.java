@@ -6,14 +6,14 @@ public class SendTokenMessage extends BasicMessage {
 
     private int chordId;
     private Queue<Integer> tokenQueue;
-    private int[] tokenNumbers;
+    private int[] LN;
 
-    public SendTokenMessage(int senderPort, int receiverPort, int chordId, Queue<Integer> tokenQueue, int[] tokenNumbers) {
+    public SendTokenMessage(int senderPort, int receiverPort, int chordId, Queue<Integer> tokenQueue, int[] LN) {
         super(MessageType.SEND_TOKEN, senderPort, receiverPort);
 
         this.chordId = chordId;
         this.tokenQueue = tokenQueue;
-        this.tokenNumbers = tokenNumbers;
+        this.LN = LN;
     }
 
     public int getChordId() {
@@ -24,7 +24,7 @@ public class SendTokenMessage extends BasicMessage {
         return tokenQueue;
     }
 
-    public int[] getTokenNumbers() {
-        return tokenNumbers;
+    public int[] getLN() {
+        return LN;
     }
 }

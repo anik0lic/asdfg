@@ -1,10 +1,10 @@
 package app;
 
-import servent.message.Message;
 import servent.message.SendTokenMessage;
 import servent.message.TokenRequestMessage;
 import servent.message.util.MessageUtil;
 
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -14,7 +14,7 @@ public class SuzukiKasamiState {
 
     private boolean hasToken;  // Does this node currently hold the token
     private int[] requestNumbers; // Tracks the largest request number for each node
-    private int[] tokenNumbers;   // Token's usage count per node
+    private int[] LN;   // Token's usage count per node
     private Queue<Integer> requestQueue; // FIFO queue of pending requests
     private int sequenceNumber;
 
@@ -22,8 +22,8 @@ public class SuzukiKasamiState {
 
     public SuzukiKasamiState() {
         this.requestNumbers = new int[totalNodes];
-        this.tokenNumbers = new int[totalNodes];
-        this.requestQueue = new ConcurrentLinkedQueue<>();
+        this.LN = new int[totalNodes];
+        this.requestQueue = new ArrayDeque<>();
         this.sequenceNumber = 0;
     }
 
@@ -36,7 +36,16 @@ public class SuzukiKasamiState {
     }
 
     public void setHasToken(boolean hasToken) {
+        AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getChordId() + " had token: " + this.hasToken + " now has token: " + hasToken);
         this.hasToken = hasToken;
+    }
+
+    public Queue<Integer> getRequestQueue() {
+        return requestQueue;
+    }
+
+    public int[] getLN() {
+        return LN;
     }
 
     public void requestCriticalSection() {
@@ -65,12 +74,13 @@ public class SuzukiKasamiState {
     }
 
     public void sendToken(int targetNodeId) {
-        MessageUtil.sendMessage(new SendTokenMessage(AppConfig.myServentInfo.getListenerPort(), targetNodeId, AppConfig.myServentInfo.getChordId(), new ConcurrentLinkedQueue<>(requestQueue), tokenNumbers));
+        MessageUtil.sendMessage(new SendTokenMessage(AppConfig.myServentInfo.getListenerPort(), targetNodeId, AppConfig.myServentInfo.getChordId(), new ConcurrentLinkedQueue<>(requestQueue), LN));
     }
 
     public void receiveToken(int[] newTokenNumbers, Queue<Integer> newRequestQueue) {
+        AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getChordId() + " received token from node " + newRequestQueue.peek() + ". " + newRequestQueue);
         this.hasToken = true;
-        this.tokenNumbers = newTokenNumbers.clone();
+        this.LN = newTokenNumbers.clone();
         this.requestQueue.addAll(newRequestQueue);
 
         lock.notifyAll();
@@ -78,7 +88,16 @@ public class SuzukiKasamiState {
 
     public void releaseCriticalSection() {
         synchronized (lock) {
-            tokenNumbers[AppConfig.myServentInfo.getChordId()] = requestNumbers[AppConfig.myServentInfo.getChordId()];
+            LN[AppConfig.myServentInfo.getChordId()] = requestNumbers[AppConfig.myServentInfo.getChordId()];
+
+            AppConfig.timestampedStandardPrint("Q when starting" + requestQueue.toString());
+            for (int i = 0; i < ChordState.CHORD_SIZE; i++) {
+                if (i != AppConfig.myServentInfo.getChordId() && requestNumbers[i] > LN[i]) {
+                    requestQueue.add(i);
+                }
+
+            }
+            AppConfig.timestampedStandardPrint("Q after for loop " + requestQueue.toString());
 
             if (!requestQueue.isEmpty() && hasToken) {
                 int nextNode = requestQueue.poll();

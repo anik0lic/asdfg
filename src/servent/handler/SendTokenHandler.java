@@ -5,6 +5,7 @@ import app.SuzukiKasamiState;
 import servent.message.Message;
 import servent.message.MessageType;
 import servent.message.SendTokenMessage;
+import servent.message.util.MessageUtil;
 
 public class SendTokenHandler implements MessageHandler {
 
@@ -23,8 +24,16 @@ public class SendTokenHandler implements MessageHandler {
 
         synchronized (SuzukiKasamiState.lock) {
             SendTokenMessage sendTokenMessage = (SendTokenMessage) clientMessage;
+
+            if (sendTokenMessage.getChordId() != AppConfig.myServentInfo.getChordId()) {
+                AppConfig.timestampedErrorPrint("SEND_TOKEN handler received a message for a different chord ID: " + sendTokenMessage.getChordId());
+                MessageUtil.sendMessage(new SendTokenMessage(sendTokenMessage.getSenderPort(), AppConfig.chordState.getNextNodePort(),
+                        sendTokenMessage.getChordId(), sendTokenMessage.getTokenQueue(), sendTokenMessage.getLN()));
+                return;
+            }
+
             AppConfig.timestampedStandardPrint("Received SEND_TOKEN message text: " + clientMessage.getMessageText());
-            AppConfig.mutex.receiveToken(sendTokenMessage.getTokenNumbers(), sendTokenMessage.getTokenQueue());
+            AppConfig.mutex.receiveToken(sendTokenMessage.getLN(), sendTokenMessage.getTokenQueue());
         }
     }
 }

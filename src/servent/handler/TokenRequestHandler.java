@@ -30,7 +30,10 @@ public class TokenRequestHandler implements MessageHandler {
             int[] requestNumbers = AppConfig.mutex.getRequestNumbers();
             requestNumbers[tokenRequestMessage.getChordId()] = Math.max(sequenceNumber, requestNumbers[tokenRequestMessage.getChordId()]);
 
-            if (AppConfig.mutex.hasToken()) {
+            if (AppConfig.mutex.hasToken() && AppConfig.mutex.getRequestQueue().isEmpty() &&
+                    (requestNumbers[tokenRequestMessage.getChordId()] > AppConfig.mutex.getLN()[tokenRequestMessage.getChordId()] ||
+                            requestNumbers[tokenRequestMessage.getChordId()] == AppConfig.mutex.getLN()[tokenRequestMessage.getChordId()] &&
+                            tokenRequestMessage.getChordId() < AppConfig.myServentInfo.getChordId())) {
                 AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getListenerPort() + " has token, sending it to " + tokenRequestMessage.getSenderPort() + " with request number: " + requestNumber + " and sequence number: " + sequenceNumber);
 
                 AppConfig.mutex.setHasToken(false);

@@ -10,13 +10,6 @@ public class UploadCommand implements CLICommand {
 
     @Override
     public void execute(String args) {
-//        String[] splitArgs = args.split(" ");
-//        if (splitArgs.length != 2) {
-//            AppConfig.timestampedErrorPrint("Invalid upload command. Usage: upload [path]");
-//            return;
-//        }
-
-//        String filePath = splitArgs[0];
         String filePath = args;
 
         int filePathNumber = 0;
@@ -31,15 +24,11 @@ public class UploadCommand implements CLICommand {
 
         int key = AppConfig.chordState.chordHash(filePathNumber);
 
-        AppConfig.timestampedErrorPrint("File path: " + filePath + ", Hash: " + filePathNumber + ", Key: " + key);
-
         if (key < 0 || key >= AppConfig.chordState.CHORD_SIZE) {
             AppConfig.timestampedErrorPrint("Invalid file path hash: " + filePathNumber);
             return;
         }
 
-//        AppConfig.chordState.getFiles().add(filePath);
         AppConfig.chordState.putValue(key, filePath);
-        AppConfig.timestampedStandardPrint("File uploaded successfully: " + filePath + " with key: " + key);
     }
 }

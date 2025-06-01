@@ -94,6 +94,12 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					case REMOVING_UPDATE:
 						messageHandler = new RemovingUpdateHandler(clientMessage);
 						break;
+					case TOKEN_REQUEST:
+						messageHandler = new TokenRequestHandler(clientMessage);
+						break;
+					case SEND_TOKEN:
+						messageHandler = new SendTokenHandler(clientMessage);
+						break;
 					case POISON:
 						break;
 				}

@@ -10,3 +10,4 @@ pause 10000
 pending
 followers
 pause 12000
+stop

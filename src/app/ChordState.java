@@ -231,37 +231,11 @@ public class ChordState {
 		return successorTable[0];
 	}
 
-	/**
-	 * Attempt to reorganize the Chord while in the critical section.
-	 */
-	public void performReorganization(Runnable reorganizationTask) {
-		// Request entry into critical section
-		suzukiKasamiState.requestCriticalSection();
-
-		while (!suzukiKasamiState.canEnterCriticalSection()) {
-			try {
-				Thread.sleep(1000); // Wait until token is received
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				AppConfig.timestampedErrorPrint("Interrupted while waiting for critical section.");
-			}
-		}
-
-		// Enter the critical section
-		suzukiKasamiState.enterCriticalSection();
-		try {
-			// The critical section (reorganization logic) is executed here
-			reorganizationTask.run();
-		} finally {
-			// Release critical section
-			suzukiKasamiState.releaseCriticalSection();
-		}
-	}
-
-
 	private void updateSuccessorTable() {
 		//first node after me has to be successorTable[0]
-		
+
+//		AppConfig.mutex.requestCriticalSection();
+//		AppConfig.timestampedStandardPrint("Updating successor table");
 		int currentNodeIndex = 0;
 		ServentInfo currentNode = allNodeInfo.get(currentNodeIndex);
 		successorTable[0] = currentNode;
@@ -309,6 +283,8 @@ public class ChordState {
 				}
 			}
 		}
+
+//		AppConfig.mutex.releaseCriticalSection();
 	}
 
 	/**
@@ -356,20 +332,6 @@ public class ChordState {
 		AppConfig.timestampedStandardPrint("Removing node: " + removedNode.getListenerPort());
 
 		AppConfig.timestampedStandardPrint("allNodeInfo before removal: " + allNodeInfo);
-//		List<ServentInfo> new1 = new ArrayList<>();
-//		new1.add(removedNode);
-//		AppConfig.timestampedStandardPrint("new1: " + new1);
-//		allNodeInfo.removeAll(new1);
-
-
-//		allNodeInfo.sort(new Comparator<ServentInfo>() {
-//
-//			@Override
-//			public int compare(ServentInfo o1, ServentInfo o2) {
-//				return o1.getChordId() - o2.getChordId();
-//			}
-//
-//		});
 
 		for(ServentInfo s : allNodeInfo) {
 			if(s.getListenerPort() == removedNode.getListenerPort()) {
@@ -414,6 +376,7 @@ public class ChordState {
 	public void putValue(int key, String value) {
 		if (isKeyMine(key)) {
 			valueMap.put(key, value);
+			AppConfig.timestampedStandardPrint("File uploaded successfully: " + value + " with key: " + key);
 		} else {
 			ServentInfo nextNode = getNextNodeForKey(key);
 			PutMessage pm = new PutMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), key, value);
@@ -446,12 +409,12 @@ public class ChordState {
 	}
 
 	public void followNode(int nodeToFollow) {
-			if (pendingFollowers.contains(nodeToFollow)){
-				AppConfig.timestampedStandardPrint("Node " + nodeToFollow + " is already a pending follower for node: " + AppConfig.myServentInfo.getListenerPort());
-			} else {
-				pendingFollowers.add(nodeToFollow);
-				AppConfig.timestampedStandardPrint("Node " + nodeToFollow + " added as a pending follower for node: " + AppConfig.myServentInfo.getListenerPort());
-			}
+		if (pendingFollowers.contains(nodeToFollow)){
+			AppConfig.timestampedStandardPrint("Node " + nodeToFollow + " is already a pending follower for node: " + AppConfig.myServentInfo.getListenerPort());
+		} else {
+			pendingFollowers.add(nodeToFollow);
+			AppConfig.timestampedStandardPrint("Node " + nodeToFollow + " added as a pending follower for node: " + AppConfig.myServentInfo.getListenerPort());
+		}
 	}
 
 	public void acceptFollower(int nodeToAccept) {
@@ -471,7 +434,6 @@ public class ChordState {
 				String value = valueMap.get(key);
 				if (value.equals(path)) {
 					valueMap.remove(key);
-//					files.remove(path);
 					AppConfig.timestampedStandardPrint("File removed successfully: " + path + " with key: " + key);
 				} else {
 					AppConfig.timestampedErrorPrint("File not found in value map for key: " + key);

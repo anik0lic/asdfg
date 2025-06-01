@@ -1,38 +1,36 @@
-16:34:54 - Starting servent [24|localhost|1400]
-16:34:54 - Pausing for 20000 ms
-16:34:56 - Sending message NEW_NODE from 1400 to 1100 | 0 | 
-16:34:57 - Got message WELCOME from 1100 to 1400 | 4 | 
-16:34:58 - Sending message UPDATE from 1400 to 1100 | 1 | 
-16:35:01 - Got message UPDATE from 1400 to 1400 | 2 | 1100,1200,1300
-16:35:06 - Got message NEW_NODE from 1600 to 1400 | 0 | 
-16:35:06 - Sending message NEW_NODE from 1600 to 1100 | 2 | 
-16:35:12 - Got message UPDATE from 1600 to 1400 | 4 | 1300
-16:35:13 - Sending message UPDATE from 1600 to 1100 | 3 | 1300,1400
-16:35:14 - Starting code for following node with chord id: 1300 and port: 1300
-16:35:14 - Node 1300 added as a pending follower for node: 1400
-16:35:14 - Visibility set to public.
-16:35:14 - File uploaded successfully: media/image.png with key: 23
-16:35:14 - Pausing for 12000 ms
-16:35:26 - Starting code for following node with chord id: 1500 and port: 1500
-16:35:26 - Node 1500 added as a pending follower for node: 1400
-16:35:27 - Got message PUT from 1600 to 1400 | 2 | 26:docs/data2.txt
-16:35:28 - Sending message PUT from 1400 to 1100 | 4 | 26:docs/data2.txt
-16:35:29 - Got message PUT from 1300 to 1400 | 5 | 13:videos/video.mp4
-16:35:33 - Got message REMOVING_UPDATE from 1100 to 1400 | 6 | 1200
-16:35:33 - Received REMOVING_UPDATE message text: 1200 msg type REMOVING_UPDATE
-16:35:33 - REMOVING UPDATE handler got message from 1100 with text: 1200
-16:35:33 - Removing node: 1100
-16:35:33 - allNodeInfo before removal: [[28|localhost|1100], [48|localhost|1200], [0|localhost|1600], [4|localhost|1300]]
-16:35:33 - Removing node: 1100 with chordId: 28
-16:35:33 - allNodeInfo after removal: [[48|localhost|1200], [0|localhost|1600], [4|localhost|1300]]
-16:35:33 - allNodeInfo after sorting: [[48|localhost|1200], [0|localhost|1600], [4|localhost|1300]]
-16:35:33 - Successor table before update: [[28|localhost|1100], [28|localhost|1100], [28|localhost|1100], [48|localhost|1200], [48|localhost|1200], [0|localhost|1600]]
-16:35:33 - Successor table after update: [[48|localhost|1200], [48|localhost|1200], [48|localhost|1200], [48|localhost|1200], [48|localhost|1200], [0|localhost|1600]]
-16:35:33 - Sending message REMOVING_UPDATE from 1100 to 1200 | 5 | 1200
-16:35:38 - Got message LIST_FILES from 1200 to 1400 | 10 | 
-16:35:38 - ValueMap in list handler: {23=media/image.png, 13=videos/video.mp4} for node1400
-16:35:38 - Files {23=media/image.png, 13=videos/video.mp4} files to string {23=media/image.png, 13=videos/video.mp4} for node 1200
-16:35:38 - Files found in the directory for node 1400 sending empty response to 1200
-16:35:39 - Got message PUT from 1300 to 1400 | 7 | 37:shared/third.txt
-16:35:39 - Sending message PUT from 1400 to 1200 | 7 | 37:shared/third.txt
-16:35:39 - Sending message LIST_FILES_RESPONSE from 1400 to 1200 | 6 | {23=media/image.png, 13=videos/video.mp4}
+20:04:54 - Starting servent [24|localhost|1400]
+20:04:54 - Pausing for 12000 ms
+20:04:55 - Sending message NEW_NODE from 1400 to 1300 | 0 | 
+20:04:57 - Got message WELCOME from 1100 to 1400 | 4 | 
+20:04:57 - Sending message UPDATE from 1400 to 1100 | 1 | 
+20:05:00 - Got message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
+20:05:05 - Got message NEW_NODE from 1600 to 1400 | 0 | 
+20:05:06 - Sending message NEW_NODE from 1600 to 1100 | 2 | 
+20:05:06 - Node 1300 added as a pending follower for node: 1400
+20:05:06 - Visibility set to public.
+20:05:06 - File uploaded successfully: media/image.png with key: 23
+20:05:06 - Pausing for 12000 ms
+20:05:11 - Got message UPDATE from 1600 to 1400 | 5 | 1300
+20:05:11 - Sending message UPDATE from 1600 to 1100 | 3 | 1300,1400
+20:05:18 - Sending message to node 1300 to list files, from node 1400
+20:05:18 - Pausing for 10000 ms
+20:05:19 - Sending message LIST_FILES from 1400 to 1300 | 4 | 
+20:05:20 - Got message LIST_FILES_RESPONSE from 1300 to 1400 | 6 | null
+20:05:20 - No files found in the directory for node.1300
+20:05:25 - Got message PUT from 1600 to 1400 | 2 | 26:docs/data2.txt
+20:05:27 - Sending message PUT from 1400 to 1100 | 5 | 26:docs/data2.txt
+20:05:28 - Pending followers: [1300]
+20:05:28 - Pausing for 10000 ms
+20:05:29 - Got message PUT from 1300 to 1400 | 7 | 13:videos/video.mp4
+20:05:29 - File uploaded successfully: videos/video.mp4 with key: 13
+20:05:36 - Got message REMOVE_FILE from 1300 to 1400 | 8 | 23 media/image.png
+20:05:36 - File removed successfully: media/image.png with key: 23
+20:05:37 - Got message PUT from 1300 to 1400 | 9 | 37:shared/third.txt
+20:05:37 - Got message LIST_FILES from 1200 to 1400 | 8 | 
+20:05:38 - Pausing for 3000 ms
+20:05:38 - Sending message PUT from 1400 to 1100 | 6 | 37:shared/third.txt
+20:05:39 - Sending message LIST_FILES_RESPONSE from 1400 to 1200 | 7 | {13=videos/video.mp4}
+20:05:41 - Followers: []
+20:05:41 - Pausing for 12000 ms
+20:05:53 - Stopping...
+20:05:53 - Node at port 1400 has stopped.

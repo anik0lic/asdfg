@@ -10,6 +10,7 @@ public class TokenRequestMessage extends BasicMessage {
         super(MessageType.TOKEN_REQUEST, senderPort, receiverPort);
         this.chordId = chordId;
         this.requestNumber = requestNumber;
+        this.sequenceNumber = sequenceNumber;
     }
 
     public int getChordId() {
