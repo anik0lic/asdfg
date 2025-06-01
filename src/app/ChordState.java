@@ -49,15 +49,13 @@ public class ChordState {
 	private List<ServentInfo> allNodeInfo;
 	
 	private Map<Integer, String> valueMap;
+	private Map<Integer, String> predecessorValueMap;
+	private Map<Integer, String> successorValueMap;
 
 	private Set<Integer> pendingFollowers;
 	private Set<Integer> followers;
 
 	private boolean visibility;
-
-	public List<ServentInfo> getAllNodeInfo() {
-		return allNodeInfo;
-	}
 
 	private SuzukiKasamiState suzukiKasamiState;
 
@@ -136,9 +134,29 @@ public class ChordState {
 	public Map<Integer, String> getValueMap() {
 		return valueMap;
 	}
-	
 	public void setValueMap(Map<Integer, String> valueMap) {
 		this.valueMap = valueMap;
+	}
+
+	public Map<Integer, String> getPredecessorValueMap() {
+		return predecessorValueMap;
+	}
+	public void setPredecessorValueMap(Map<Integer, String> predecessorValueMap) {
+		this.predecessorValueMap = predecessorValueMap;
+	}
+	public Map<Integer, String> getSuccessorValueMap() {
+		return successorValueMap;
+	}
+	public void setSuccessorValueMap(Map<Integer, String> successorValueMap) {
+		this.successorValueMap = successorValueMap;
+	}
+
+	public void clearPredecessorValueMap() {
+		this.predecessorValueMap = new HashMap<>();
+	}
+
+	public void clearSuccessorValueMap() {
+		this.successorValueMap = new HashMap<>();
 	}
 
 	public Set<Integer> getPendingFollowers() { return pendingFollowers; }
@@ -376,6 +394,13 @@ public class ChordState {
 	public void putValue(int key, String value) {
 		if (isKeyMine(key)) {
 			valueMap.put(key, value);
+//			posalji predeceseru i successoru
+			MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
+					predecessorInfo.getListenerPort(), "add", "succ", valueMap));
+
+			MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
+					successorTable[0].getListenerPort(), "add", "pred", valueMap));
+
 			AppConfig.timestampedStandardPrint("File uploaded successfully: " + value + " with key: " + key);
 		} else {
 			ServentInfo nextNode = getNextNodeForKey(key);
@@ -434,6 +459,13 @@ public class ChordState {
 				String value = valueMap.get(key);
 				if (value.equals(path)) {
 					valueMap.remove(key);
+
+					MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
+							predecessorInfo.getListenerPort(), "remove", "succ", valueMap));
+
+					MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
+							successorTable[0].getListenerPort(), "remove", "pred", valueMap));
+
 					AppConfig.timestampedStandardPrint("File removed successfully: " + path + " with key: " + key);
 				} else {
 					AppConfig.timestampedErrorPrint("File not found in value map for key: " + key);

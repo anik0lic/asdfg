@@ -1,39 +1,44 @@
-20:04:44 - Starting servent [4|localhost|1300]
-20:04:44 - Pausing for 30000 ms
-20:04:45 - Sending message NEW_NODE from 1300 to 1100 | 0 | 
-20:04:46 - Got message WELCOME from 1100 to 1300 | 2 | 
-20:04:48 - Sending message UPDATE from 1300 to 1100 | 1 | 
-20:04:50 - Got message UPDATE from 1300 to 1300 | 2 | 1100,1200
-20:04:55 - Got message NEW_NODE from 1400 to 1300 | 0 | 
-20:04:56 - Sending message NEW_NODE from 1400 to 1100 | 2 | 
-20:04:59 - Got message UPDATE from 1400 to 1300 | 3 | 1100,1200
-20:05:00 - Sending message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
-20:05:08 - Got message NEW_NODE from 1600 to 1300 | 4 | 
-20:05:09 - Sending message WELCOME from 1300 to 1600 | 4 | 
-20:05:10 - Got message UPDATE from 1600 to 1300 | 1 | 
-20:05:11 - Sending message UPDATE from 1600 to 1400 | 5 | 1300
-20:05:14 - Visibility set to public.
-20:05:14 - Pausing for 13000 ms
-20:05:19 - Got message LIST_FILES from 1400 to 1300 | 4 | 
-20:05:19 - No files found in the directory for node 1300 sending empty response to 1400
-20:05:20 - Sending message LIST_FILES_RESPONSE from 1300 to 1400 | 6 | null
-20:05:27 - Node 1400 added as a pending follower for node: 1300
-20:05:27 - Pausing for 10000 ms
-20:05:28 - Got message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
-20:05:29 - Sending message PUT from 1300 to 1400 | 7 | 13:videos/video.mp4
-20:05:35 - Got message REMOVE_FILE from 1600 to 1300 | 4 | 23 media/image.png
-20:05:36 - Sending message REMOVE_FILE from 1300 to 1400 | 8 | 23 media/image.png
-20:05:37 - Pausing for 10000 ms
-20:05:37 - Sending message PUT from 1300 to 1400 | 9 | 37:shared/third.txt
-20:05:47 - Node 1600 added as a pending follower for node: 1300
-20:05:47 - Pausing for 3000 ms
-20:05:50 - Sending message to node 1200 to list files, from node 1300
-20:05:50 - Pausing for 12000 ms
-20:05:51 - Sending message LIST_FILES from 1300 to 1200 | 10 | 
-20:06:02 - Accepted follower: 1400
-20:06:02 - Pausing for 10000 ms
-20:06:12 - Pending followers: [1600]
-20:06:12 - Followers: [1400]
-20:06:12 - Pausing for 10000 ms
-20:06:22 - Stopping...
-20:06:22 - Node at port 1300 has stopped.
+20:47:12 - Starting servent [4|localhost|1300]
+20:47:12 - Pausing for 30000 ms
+20:47:13 - Sending message NEW_NODE from 1300 to 1100 | 0 | 
+20:47:15 - Got message WELCOME from 1100 to 1300 | 2 | 
+20:47:15 - Sending message UPDATE from 1300 to 1100 | 1 | 
+20:47:17 - Got message UPDATE from 1300 to 1300 | 2 | 1100,1200
+20:47:24 - Got message NEW_NODE from 1400 to 1300 | 3 | 
+20:47:26 - Sending message NEW_NODE from 1400 to 1100 | 2 | 
+20:47:29 - Got message UPDATE from 1400 to 1300 | 4 | 1100,1200
+20:47:30 - Sending message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
+20:47:36 - Got message NEW_NODE from 1600 to 1300 | 5 | 
+20:47:36 - Got message BACKUP from 1400 to 1300 | 2 | add
+20:47:36 - Adding files to successor map: {23=media/image.png}
+20:47:36 - Map before removal: null
+20:47:36 - Map after removal: {23=media/image.png}
+20:47:37 - Sending message WELCOME from 1300 to 1600 | 4 | 
+20:47:38 - Got message UPDATE from 1600 to 1300 | 1 | 
+20:47:39 - Sending message UPDATE from 1600 to 1400 | 5 | 1300
+20:47:42 - Visibility set to public.
+20:47:42 - Pausing for 13000 ms
+20:47:47 - Got message LIST_FILES from 1400 to 1300 | 5 | 
+20:47:47 - No files found in the directory for node 1300 sending empty response to 1400
+20:47:48 - Sending message LIST_FILES_RESPONSE from 1300 to 1400 | 6 | null
+20:47:55 - Node 1400 added as a pending follower for node: 1300
+20:47:55 - Pausing for 10000 ms
+20:47:56 - Got message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
+20:47:57 - Sending message PUT from 1300 to 1400 | 7 | 13:videos/video.mp4
+20:47:58 - Got message BACKUP from 1400 to 1300 | 7 | add
+20:47:58 - Adding files to successor map: {23=media/image.png, 13=videos/video.mp4}
+20:47:58 - Map before removal: {23=media/image.png}
+20:47:58 - Map after removal: {23=media/image.png, 13=videos/video.mp4}
+20:48:03 - Got message REMOVE_FILE from 1600 to 1300 | 4 | 23 media/image.png
+20:48:04 - Sending message REMOVE_FILE from 1300 to 1400 | 8 | 23 media/image.png
+20:48:05 - Got message BACKUP from 1400 to 1300 | 9 | remove
+20:48:05 - Removing files from successor map: {13=videos/video.mp4}
+20:48:05 - Map before removal: {23=media/image.png, 13=videos/video.mp4}
+20:48:05 - Map after removal: {13=videos/video.mp4}
+20:48:05 - Pausing for 10000 ms
+20:48:06 - Sending message PUT from 1300 to 1400 | 9 | 37:shared/third.txt
+20:48:15 - Node 1600 added as a pending follower for node: 1300
+20:48:15 - Pausing for 3000 ms
+20:48:18 - Sending message to node 1200 to list files, from node 1300
+20:48:18 - Pausing for 12000 ms
+20:48:19 - Sending message LIST_FILES from 1300 to 1200 | 10 | 

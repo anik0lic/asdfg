@@ -1,25 +1,31 @@
-20:05:04 - Starting servent [0|localhost|1600]
-20:05:04 - Pausing for 10000 ms
-20:05:05 - Sending message NEW_NODE from 1600 to 1400 | 0 | 
-20:05:10 - Got message WELCOME from 1300 to 1600 | 4 | 
-20:05:10 - Sending message UPDATE from 1600 to 1300 | 1 | 
-20:05:14 - Got message UPDATE from 1600 to 1600 | 5 | 1300,1400,1100,1200
-20:05:14 - Visibility set to public.
-20:05:14 - Pausing for 13000 ms
-20:05:24 - Got message PUT from 1200 to 1600 | 6 | 26:docs/data2.txt
-20:05:25 - Sending message PUT from 1600 to 1400 | 2 | 26:docs/data2.txt
-20:05:27 - Pausing for 10000 ms
-20:05:28 - Sending message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
-20:05:34 - Got message REMOVE_FILE from 1200 to 1600 | 7 | 23 media/image.png
-20:05:35 - Sending message REMOVE_FILE from 1600 to 1300 | 4 | 23 media/image.png
-20:05:37 - Sending message to node 1100 to list files, from node 1600
-20:05:37 - Pausing for 10000 ms
-20:05:38 - Sending message LIST_FILES from 1600 to 1100 | 5 | 
-20:05:39 - Got message LIST_FILES_RESPONSE from 1100 to 1600 | 11 | {26=docs/data2.txt}
-20:05:39 - Files in the directory: {26=docs/data2.txt} from node 1100
-20:05:47 - Pending followers: []
-20:05:47 - Pausing for 3000 ms
-20:05:50 - Followers: []
-20:05:50 - Pausing for 10000 ms
-20:06:00 - Stopping...
-20:06:00 - Node at port 1600 has stopped.
+20:47:32 - Starting servent [0|localhost|1600]
+20:47:32 - Pausing for 10000 ms
+20:47:34 - Sending message NEW_NODE from 1600 to 1100 | 0 | 
+20:47:37 - Got message WELCOME from 1300 to 1600 | 4 | 
+20:47:38 - Sending message UPDATE from 1600 to 1300 | 1 | 
+20:47:42 - Visibility set to public.
+20:47:42 - Pausing for 13000 ms
+20:47:42 - Got message UPDATE from 1600 to 1600 | 6 | 1300,1400,1100,1200
+20:47:44 - Got message BACKUP from 1200 to 1600 | 8 | add
+20:47:44 - Adding files to predecessor map: {48=docs/test.txt}
+20:47:44 - Map before removal: null
+20:47:44 - Map after removal: {48=docs/test.txt}
+20:47:53 - Got message PUT from 1200 to 1600 | 9 | 26:docs/data2.txt
+20:47:55 - Sending message PUT from 1600 to 1400 | 2 | 26:docs/data2.txt
+20:47:55 - Pausing for 10000 ms
+20:47:56 - Sending message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
+20:48:02 - Got message REMOVE_FILE from 1200 to 1600 | 10 | 23 media/image.png
+20:48:03 - Sending message REMOVE_FILE from 1600 to 1300 | 4 | 23 media/image.png
+20:48:05 - Sending message to node 1100 to list files, from node 1600
+20:48:05 - Pausing for 10000 ms
+20:48:06 - Sending message LIST_FILES from 1600 to 1100 | 5 | 
+20:48:07 - Got message LIST_FILES_RESPONSE from 1100 to 1600 | 12 | {26=docs/data2.txt}
+20:48:07 - Files in the directory: {26=docs/data2.txt} from node 1100
+20:48:09 - Got message BACKUP from 1200 to 1600 | 13 | add
+20:48:09 - Adding files to predecessor map: {48=docs/test.txt, 37=shared/third.txt}
+20:48:09 - Map before removal: {48=docs/test.txt}
+20:48:09 - Map after removal: {48=docs/test.txt, 37=shared/third.txt}
+20:48:15 - Pending followers: []
+20:48:15 - Pausing for 3000 ms
+20:48:18 - Followers: []
+20:48:18 - Pausing for 10000 ms
