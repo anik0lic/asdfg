@@ -1,36 +1,46 @@
-19:28:42 - Starting servent [4|localhost|1300]
-19:28:42 - Pausing for 10000 ms
-19:28:43 - Sending message NEW_NODE from 1300 to 1200 | 0 | 
-19:28:46 - Got message WELCOME from 1100 to 1300 | 2 | 
-19:28:46 - Sending message UPDATE from 1300 to 1100 | 1 | 
-19:28:52 - Visibility set to public.
-19:28:52 - Pausing for 13000 ms
-19:28:53 - Got message NEW_NODE from 1400 to 1300 | 0 | 
-19:28:54 - Sending message WELCOME from 1300 to 1400 | 2 | 
-19:28:56 - Got message UPDATE from 1400 to 1300 | 1 | 
-19:28:57 - Sending message UPDATE from 1400 to 1400 | 3 | 1300
-19:29:05 - Starting code for following node with chord id: 1400 and port: 1400
-19:29:05 - Node 1400 added as a pending follower for node: 1300
-19:29:05 - Pausing for 10000 ms
-19:29:15 - File uploaded successfully: shared/third.txt with key: 37
-19:29:15 - Pausing for 10000 ms
-19:29:18 - Got message REMOVE_NODE from 1400 to 1300 | 3 | 
-19:29:18 - Taking over responsibilities from node: [24|localhost|1400]
-19:29:18 - Added key: 23, value: media/image.png
-19:29:25 - Starting code for following node with chord id: 1600 and port: 1600
-19:29:25 - Node 1600 added as a pending follower for node: 1300
-19:29:25 - Pausing for 3000 ms
-19:29:28 - Sending message to node 1200 to list files, from node 1300
-19:29:28 - ValueMap: {37=shared/third.txt, 23=media/image.png}
-19:29:28 - Pausing for 12000 ms
-19:29:30 - Sending message LIST_FILES from 1300 to 1200 | 4 | 
-19:29:40 - Accepting following node with chord id: 1400
-19:29:40 - Accepted follower: 1400
-19:29:40 - Pausing for 10000 ms
-19:29:50 - Pending followers: [1600]
-19:29:50 - Followers: [1400]
-19:29:50 - Pausing for 10000 ms
-19:30:01 - Stopping...
-19:30:01 - Transferring responsibilities to successor at port 1400
-19:30:01 - Node at port 1300 has stopped.
-19:30:01 - Sending message REMOVE_NODE from 1300 to 1400 | 5 | 
+16:34:44 - Starting servent [4|localhost|1300]
+16:34:44 - Pausing for 30000 ms
+16:34:45 - Sending message NEW_NODE from 1300 to 1200 | 0 | 
+16:34:48 - Got message WELCOME from 1100 to 1300 | 2 | 
+16:34:49 - Sending message UPDATE from 1300 to 1100 | 1 | 
+16:34:51 - Got message UPDATE from 1300 to 1300 | 3 | 1100,1200
+16:35:00 - Got message UPDATE from 1400 to 1300 | 4 | 1100,1200
+16:35:01 - Sending message UPDATE from 1400 to 1400 | 2 | 1100,1200,1300
+16:35:09 - Got message NEW_NODE from 1600 to 1300 | 5 | 
+16:35:10 - Sending message WELCOME from 1300 to 1600 | 3 | 
+16:35:11 - Got message UPDATE from 1600 to 1300 | 1 | 
+16:35:12 - Sending message UPDATE from 1600 to 1400 | 4 | 1300
+16:35:14 - Visibility set to public.
+16:35:14 - Pausing for 13000 ms
+16:35:27 - Starting code for following node with chord id: 1400 and port: 1400
+16:35:27 - Node 1400 added as a pending follower for node: 1300
+16:35:27 - Pausing for 10000 ms
+16:35:28 - Got message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
+16:35:29 - Sending message PUT from 1300 to 1400 | 5 | 13:videos/video.mp4
+16:35:31 - Got message REMOVING_UPDATE from 1100 to 1300 | 4 | 1200
+16:35:31 - Received REMOVING_UPDATE message text: 1200 msg type REMOVING_UPDATE
+16:35:31 - REMOVING UPDATE handler got message from 1100 with text: 1200
+16:35:31 - Removing node: 1100
+16:35:31 - allNodeInfo before removal: [[24|localhost|1400], [28|localhost|1100], [48|localhost|1200], [0|localhost|1600]]
+16:35:31 - Removing node: 1100 with chordId: 28
+16:35:31 - allNodeInfo after removal: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
+16:35:31 - allNodeInfo after sorting: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
+16:35:31 - Successor table before update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+16:35:31 - Successor table after update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+16:35:33 - Sending message REMOVING_UPDATE from 1100 to 1400 | 6 | 1200
+16:35:37 - File uploaded successfully: shared/third.txt with key: 37
+16:35:37 - Pausing for 10000 ms
+16:35:39 - Sending message PUT from 1300 to 1400 | 7 | 37:shared/third.txt
+16:35:47 - Starting code for following node with chord id: 1600 and port: 1600
+16:35:47 - Node 1600 added as a pending follower for node: 1300
+16:35:47 - Pausing for 3000 ms
+16:35:50 - Sending message to node 1200 to list files, from node 1300
+16:35:50 - ValueMap: {}
+16:35:50 - Pausing for 12000 ms
+16:35:51 - Sending message LIST_FILES from 1300 to 1200 | 8 | 
+16:36:03 - Accepting following node with chord id: 1400
+16:36:03 - Accepted follower: 1400
+16:36:03 - Pausing for 10000 ms
+16:36:13 - Pending followers: [1600]
+16:36:13 - Followers: [1400]
+16:36:13 - Pausing for 10000 ms

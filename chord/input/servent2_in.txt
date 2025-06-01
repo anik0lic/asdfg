@@ -1,4 +1,4 @@
-pause 10000
+pause 30000
 visibility public
 pause 13000
 follow 1400
@@ -14,4 +14,3 @@ pause 10000
 pending
 followers
 pause 10000
-stop

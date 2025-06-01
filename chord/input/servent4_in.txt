@@ -1,4 +1,4 @@
-pause 14000
+pause 10000
 visibility public
 pause 13000
 upload videos/video.mp4
@@ -9,4 +9,3 @@ pending
 pause 3000
 followers
 pause 10000
-stop

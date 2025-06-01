@@ -1,4 +1,4 @@
-pause 10000
+pause 40000
 follow 1100
 pause 10000
 upload docs/data2.txt
@@ -10,4 +10,3 @@ pause 10000
 pending
 followers
 pause 12000
-stop

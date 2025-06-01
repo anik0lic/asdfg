@@ -1,18 +1,32 @@
-19:29:02 - Starting servent [0|localhost|1600]
-19:29:03 - Pausing for 14000 ms
-19:29:03 - Sending message NEW_NODE from 1600 to 1200 | 0 | 
-19:29:17 - Visibility set to public.
-19:29:17 - Pausing for 13000 ms
-19:29:30 - File uploaded successfully: videos/video.mp4 with key: 13
-19:29:30 - Pausing for 10000 ms
-19:29:40 - Sending message to node 1100 to list files, from node 1600
-19:29:40 - ValueMap: {13=videos/video.mp4}
-19:29:40 - Pausing for 10000 ms
-19:29:41 - Sending message LIST_FILES from 1600 to 1100 | 1 | 
-19:29:50 - Pending followers: []
-19:29:50 - Pausing for 3000 ms
-19:29:53 - Followers: []
-19:29:53 - Pausing for 10000 ms
-19:30:03 - Stopping...
-19:30:03 - No successor found. No keys to transfer.
-19:30:03 - Node at port 1600 has stopped.
+16:35:04 - Starting servent [0|localhost|1600]
+16:35:04 - Pausing for 10000 ms
+16:35:06 - Sending message NEW_NODE from 1600 to 1400 | 0 | 
+16:35:10 - Got message WELCOME from 1300 to 1600 | 3 | 
+16:35:11 - Sending message UPDATE from 1600 to 1300 | 1 | 
+16:35:14 - Visibility set to public.
+16:35:14 - Pausing for 13000 ms
+16:35:15 - Got message UPDATE from 1600 to 1600 | 6 | 1300,1400,1100,1200
+16:35:25 - Got message PUT from 1200 to 1600 | 7 | 26:docs/data2.txt
+16:35:27 - Sending message PUT from 1600 to 1400 | 2 | 26:docs/data2.txt
+16:35:27 - File uploaded successfully: videos/video.mp4 with key: 13
+16:35:27 - Pausing for 10000 ms
+16:35:28 - Sending message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
+16:35:30 - Got message REMOVING_UPDATE from 1100 to 1600 | 9 | 1200
+16:35:30 - Received REMOVING_UPDATE message text: 1200 msg type REMOVING_UPDATE
+16:35:30 - REMOVING UPDATE handler got message from 1100 with text: 1200
+16:35:30 - Removing node: 1100
+16:35:30 - allNodeInfo before removal: [[4|localhost|1300], [24|localhost|1400], [28|localhost|1100], [48|localhost|1200]]
+16:35:30 - Removing node: 1100 with chordId: 28
+16:35:30 - allNodeInfo after removal: [[4|localhost|1300], [24|localhost|1400], [48|localhost|1200]]
+16:35:30 - allNodeInfo after sorting: [[4|localhost|1300], [24|localhost|1400], [48|localhost|1200]]
+16:35:30 - Successor table before update: [[4|localhost|1300], [4|localhost|1300], [4|localhost|1300], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+16:35:30 - Successor table after update: [[4|localhost|1300], [4|localhost|1300], [4|localhost|1300], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+16:35:31 - Sending message REMOVING_UPDATE from 1100 to 1300 | 4 | 1200
+16:35:37 - Sending message to node 1100 to list files, from node 1600
+16:35:37 - ValueMap: {}
+16:35:37 - Pausing for 10000 ms
+16:35:38 - Sending message LIST_FILES from 1600 to 1100 | 5 | 
+16:35:47 - Pending followers: []
+16:35:47 - Pausing for 3000 ms
+16:35:50 - Followers: []
+16:35:50 - Pausing for 10000 ms

@@ -1,6 +1,6 @@
-pause 12000
+pause 20000
 follow 1300
 visibility public
 upload media/image.png
 pause 12000
-stop
+follow 1500

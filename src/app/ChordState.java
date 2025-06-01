@@ -55,6 +55,10 @@ public class ChordState {
 
 	private boolean visibility;
 
+	public List<ServentInfo> getAllNodeInfo() {
+		return allNodeInfo;
+	}
+
 	private SuzukiKasamiState suzukiKasamiState;
 
 	public ChordState() {
@@ -305,7 +309,6 @@ public class ChordState {
 				}
 			}
 		}
-		
 	}
 
 	/**
@@ -350,52 +353,59 @@ public class ChordState {
 	}
 
 	public void removeNode(ServentInfo removedNode) {
-		// 1) izbriši iz allNodeInfo i re-sort
-		allNodeInfo.removeIf(si -> si.equals(removedNode));
-		allNodeInfo.sort(Comparator.comparingInt(ServentInfo::getChordId));
+		AppConfig.timestampedStandardPrint("Removing node: " + removedNode.getListenerPort());
 
-		// 2) nađi novog predecessor
+		AppConfig.timestampedStandardPrint("allNodeInfo before removal: " + allNodeInfo);
+//		List<ServentInfo> new1 = new ArrayList<>();
+//		new1.add(removedNode);
+//		AppConfig.timestampedStandardPrint("new1: " + new1);
+//		allNodeInfo.removeAll(new1);
+
+
+//		allNodeInfo.sort(new Comparator<ServentInfo>() {
+//
+//			@Override
+//			public int compare(ServentInfo o1, ServentInfo o2) {
+//				return o1.getChordId() - o2.getChordId();
+//			}
+//
+//		});
+
+		for(ServentInfo s : allNodeInfo) {
+			if(s.getListenerPort() == removedNode.getListenerPort()) {
+				AppConfig.timestampedStandardPrint("Removing node: " + s.getListenerPort() + " with chordId: " + s.getChordId());
+				allNodeInfo.remove(s);
+				break;
+			}
+		}
+		AppConfig.timestampedStandardPrint("allNodeInfo after removal: " + allNodeInfo);
+
+		List<ServentInfo> newList = new ArrayList<>();
+		List<ServentInfo> newList2 = new ArrayList<>();
+
 		int myId = AppConfig.myServentInfo.getChordId();
-		ServentInfo newPred = null;
-		for (ServentInfo si : allNodeInfo) {
-			if (si.getChordId() < myId) newPred = si;
-			else break;
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getChordId() < myId) {
+				newList2.add(serventInfo);
+			} else {
+				newList.add(serventInfo);
+			}
 		}
-		if (newPred == null && !allNodeInfo.isEmpty()) {
-			newPred = allNodeInfo.get(allNodeInfo.size() - 1);
-		}
-		predecessorInfo = newPred;
 
-		// 3) rekalkuliši ceo successorTable
+		allNodeInfo.clear();
+		allNodeInfo.addAll(newList);
+		allNodeInfo.addAll(newList2);
+		AppConfig.timestampedStandardPrint("allNodeInfo after sorting: " + allNodeInfo);
+		if (newList2.size() > 0) {
+			predecessorInfo = newList2.get(newList2.size() - 1);
+		} else {
+			predecessorInfo = newList.get(newList.size() - 1);
+		}
+
+		AppConfig.timestampedStandardPrint("Successor table before update: " + Arrays.toString(successorTable));
 		updateSuccessorTable();
+		AppConfig.timestampedStandardPrint("Successor table after update: " + Arrays.toString(successorTable));
 	}
-
-//	public void handleNodeExit(int exitingChordId) {
-//		ServentInfo exitingNode = null;
-//
-//		// Find the exiting node in allNodeInfo
-//		for (ServentInfo si : allNodeInfo) {
-//			if (si.getChordId() == exitingChordId) {
-//				exitingNode = si;
-//				break;
-//			}
-//		}
-//
-//		if (exitingNode != null) {
-//			AppConfig.timestampedStandardPrint("Removing node: " + exitingNode);
-//			removeNode(exitingNode);
-//
-//			// Notify successor to take over the responsibilities
-//			ServentInfo successor = successorTable[0];
-//			if (successor != null) {
-//				MessageUtil.sendMessage(
-//						new TakeKeysMessage(AppConfig.myServentInfo.getListenerPort(), successor.getListenerPort(),
-//								exitingNode.getChordId(), valueMap));
-//			}
-//		} else {
-//			AppConfig.timestampedErrorPrint("Node with ID: " + exitingChordId + " was not found.");
-//		}
-//	}
 
 
 	/**

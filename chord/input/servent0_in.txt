@@ -1,6 +1,6 @@
-pause 10000
+pause 50000
 visibility public
-upload docs/stoptest.txt
+upload docs/test.txt
 pause 13000
 follow 1200
 stop

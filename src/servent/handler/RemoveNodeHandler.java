@@ -5,6 +5,8 @@ import app.ServentInfo;
 import servent.message.Message;
 import servent.message.MessageType;
 import servent.message.RemoveNodeMessage;
+import servent.message.RemovingUpdateMessage;
+import servent.message.util.MessageUtil;
 
 import java.util.Map;
 
@@ -19,23 +21,40 @@ public class RemoveNodeHandler implements MessageHandler {
     @Override
     public void run() {
         if (clientMessage.getMessageType() != MessageType.REMOVE_NODE) {
-            System.err.println("REMOVE_NODE handler got a message that is: " + clientMessage.getMessageType());
+            AppConfig.timestampedErrorPrint("REMOVE_NODE handler got a message that is: " + clientMessage.getMessageType());
             return;
         }
 
         RemoveNodeMessage removeNodeMessage = (RemoveNodeMessage) clientMessage;
-        ServentInfo removedNodeInfo = removeNodeMessage.getRemovedNodeInfo();
+        int removedNodePort = removeNodeMessage.getSenderPort();
         Map<Integer, String> transferredKeys = removeNodeMessage.getTransferredKeys();
 
-        // Add transferred keys to the current node's valueMap
-        AppConfig.timestampedStandardPrint("Taking over responsibilities from node: " + removedNodeInfo);
+        if (clientMessage.getSenderPort() == AppConfig.chordState.getPredecessor().getListenerPort()) {
 
-        transferredKeys.forEach((key, value) -> {
-            AppConfig.chordState.getValueMap().put(key, value);
-            AppConfig.timestampedStandardPrint("Added key: " + key + ", value: " + value);
-        });
+            AppConfig.timestampedStandardPrint(clientMessage.getReceiverPort() + " is taking over responsibilities from node: " + removedNodePort);
 
-        // Remove the node from local state
-        AppConfig.chordState.removeNode(removedNodeInfo);
+            transferredKeys.forEach((key, value) -> {
+                AppConfig.chordState.getValueMap().put(key, value);
+                AppConfig.timestampedStandardPrint("Added key: " + key + ", value: " + value);
+            });
+
+            AppConfig.chordState.setPredecessor(new ServentInfo("localhost", removeNodeMessage.getPredecessorPort()));
+            AppConfig.timestampedStandardPrint("New predecessor is: " + removeNodeMessage.getPredecessorPort());
+
+//            posaljemo update sledecem
+            MessageUtil.sendMessage(new RemovingUpdateMessage(removedNodePort, AppConfig.myServentInfo.getListenerPort(), ""));
+
+        } else {
+            AppConfig.timestampedStandardPrint("TEST Node " + removedNodePort + " is being removed, this is not succesor " + clientMessage.getReceiverPort());
+            int chordId = AppConfig.chordState.chordHash(removedNodePort);
+            ServentInfo nextNode = AppConfig.chordState.getNextNodeForKey(chordId);
+            AppConfig.timestampedStandardPrint("Next node is: " + nextNode.getListenerPort() + " for key: " + AppConfig.myServentInfo.getChordId());
+//            if (nextNode.getListenerPort() == removedNodePort) {
+//                nextNode = AppConfig.chordState.getNextNodeForKey(nextNode.getChordId());
+//            }
+            MessageUtil.sendMessage(new RemoveNodeMessage(removedNodePort, nextNode.getListenerPort(), transferredKeys));
+        }
+
+//        AppConfig.chordState.removeNode(removedNodeInfo);
     }
 }

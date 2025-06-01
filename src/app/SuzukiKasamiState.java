@@ -1,96 +1,92 @@
 package app;
 
+import servent.message.Message;
+import servent.message.SendTokenMessage;
+import servent.message.TokenRequestMessage;
+import servent.message.util.MessageUtil;
+
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SuzukiKasamiState {
 
-    private int nodeId;  // Node's unique ID
     private final int totalNodes = ChordState.CHORD_SIZE; // Total number of nodes in the system
 
     private boolean hasToken;  // Does this node currently hold the token
     private int[] requestNumbers; // Tracks the largest request number for each node
     private int[] tokenNumbers;   // Token's usage count per node
     private Queue<Integer> requestQueue; // FIFO queue of pending requests
+    private int sequenceNumber;
+
+    public static final Object lock = new Object(); // Lock for synchronizing access to shared resources
 
     public SuzukiKasamiState() {
         this.requestNumbers = new int[totalNodes];
         this.tokenNumbers = new int[totalNodes];
         this.requestQueue = new ConcurrentLinkedQueue<>();
+        this.sequenceNumber = 0;
     }
 
-    public void setNodeId(int nodeId) {
-        this.nodeId = nodeId;
+    public int[] getRequestNumbers() {
+        return requestNumbers;
     }
 
-    public synchronized void requestCriticalSection() {
-        requestNumbers[nodeId]++;
-        broadcastRequest();
-    }
-
-    public synchronized boolean canEnterCriticalSection() {
+    public boolean hasToken() {
         return hasToken;
     }
 
-    public synchronized void enterCriticalSection() {
-        if (!hasToken) {
-            throw new IllegalStateException("Node doesn't have the token to enter critical section.");
+    public void setHasToken(boolean hasToken) {
+        this.hasToken = hasToken;
+    }
+
+    public void requestCriticalSection() {
+        synchronized (lock) {
+            sequenceNumber++;
+            requestNumbers[AppConfig.myServentInfo.getChordId()] = sequenceNumber;
+
+            AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getChordId() + " requesting critical section with RN[" + AppConfig.myServentInfo.getChordId() + "] = " + requestNumbers[AppConfig.myServentInfo.getChordId()]);
+
+            if (!hasToken) {
+                MessageUtil.sendMessage(new TokenRequestMessage(AppConfig.myServentInfo.getListenerPort(), AppConfig.chordState.getNextNodePort(), AppConfig.myServentInfo.getChordId(), requestNumbers[AppConfig.myServentInfo.getChordId()], sequenceNumber));
+            }
+
+            while (!hasToken && (!requestQueue.isEmpty() && requestQueue.peek() != AppConfig.myServentInfo.getChordId())) {
+                try {
+                    lock.wait(); // Wait until the token is received
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Restore interrupted status
+                    AppConfig.timestampedErrorPrint("Thread interrupted while waiting for token: " + e.getMessage());
+                }
+            }
+
+            AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getChordId() + " has acquired the token and can enter the critical section.");
+            requestQueue.remove(AppConfig.myServentInfo.getChordId());
         }
     }
 
-    public synchronized void releaseCriticalSection() {
-        // Increment this node’s tokenNumbers count
-        tokenNumbers[nodeId]++;
-
-        // Pass the token to the next node in the request queue
-        if (!requestQueue.isEmpty()) {
-            int nextNode = requestQueue.poll();
-            passToken(nextNode);
-        }
+    public void sendToken(int targetNodeId) {
+        MessageUtil.sendMessage(new SendTokenMessage(AppConfig.myServentInfo.getListenerPort(), targetNodeId, AppConfig.myServentInfo.getChordId(), new ConcurrentLinkedQueue<>(requestQueue), tokenNumbers));
     }
 
-    private void broadcastRequest() {
-        for (int i = 0; i < totalNodes; i++) {
-            if (i == nodeId) continue;
-
-            // Send a request message to all other nodes
-            // RequestMessage includes: requesterId and requestNumber
-            sendRequestMessage(i, nodeId, requestNumbers[nodeId]);
-        }
-    }
-
-    private void passToken(int nextNodeId) {
-        // Simulate token being sent to the next node
-        hasToken = false;
-
-        // Notify the next node to grant it the token
-        sendToken(nextNodeId, tokenNumbers);
-    }
-
-    private void sendRequestMessage(int targetNodeId, int requesterId, int requestNumber) {
-        // Logic to send a request message to a specific node
-        // (communication simulated via messaging in a distributed environment)
-    }
-
-    private void sendToken(int targetNodeId, int[] tokenNumbers) {
-        // Send the token to the specified node
-        // TokenMessage includes: senderId, tokenNumbers, and requestQueue
-    }
-
-    public synchronized void receiveRequestMessage(int senderId, int requestNumber) {
-        // Update the requestNumbers array
-        requestNumbers[senderId] = Math.max(requestNumbers[senderId], requestNumber);
-
-        // If this node has the token, check if the request can be granted
-        if (hasToken && !requestQueue.contains(senderId) && requestNumber == tokenNumbers[senderId] + 1) {
-            requestQueue.add(senderId);
-        }
-    }
-
-    public synchronized void receiveToken(int[] newTokenNumbers, Queue<Integer> newRequestQueue) {
+    public void receiveToken(int[] newTokenNumbers, Queue<Integer> newRequestQueue) {
         this.hasToken = true;
         this.tokenNumbers = newTokenNumbers.clone();
         this.requestQueue.addAll(newRequestQueue);
+
+        lock.notifyAll();
     }
 
+    public void releaseCriticalSection() {
+        synchronized (lock) {
+            tokenNumbers[AppConfig.myServentInfo.getChordId()] = requestNumbers[AppConfig.myServentInfo.getChordId()];
+
+            if (!requestQueue.isEmpty() && hasToken) {
+                int nextNode = requestQueue.poll();
+                AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getChordId() + " releasing the token and sending it to the next node in the request queue. " + nextNode);
+                sendToken(nextNode);
+                hasToken = false;
+            }
+            AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getChordId() + " released critical section");
+        }
+    }
 }

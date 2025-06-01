@@ -33,8 +33,7 @@ public class UpdateHandler implements MessageHandler {
 				} else {
 					newMessageText = clientMessage.getMessageText() + "," + AppConfig.myServentInfo.getListenerPort();
 				}
-				Message nextUpdate = new UpdateMessage(clientMessage.getSenderPort(), AppConfig.chordState.getNextNodePort(),
-						newMessageText);
+				Message nextUpdate = new UpdateMessage(clientMessage.getSenderPort(), AppConfig.chordState.getNextNodePort(), newMessageText);
 				MessageUtil.sendMessage(nextUpdate);
 			} else {
 				String messageText = clientMessage.getMessageText();

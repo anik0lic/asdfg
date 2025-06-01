@@ -47,6 +47,7 @@ public class AppConfig {
 	public static int SERVENT_COUNT;
 	
 	public static ChordState chordState;
+	public static SuzukiKasamiState mutex;
 	
 	/**
 	 * Reads a config file. Should be called once at start of app.
@@ -116,6 +117,7 @@ public class AppConfig {
 		}
 		
 		myServentInfo = new ServentInfo("localhost", serventPort);
+		mutex = new SuzukiKasamiState();
 	}
 	
 }

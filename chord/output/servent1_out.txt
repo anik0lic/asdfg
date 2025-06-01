@@ -1,34 +1,56 @@
-19:28:32 - Starting servent [48|localhost|1200]
-19:28:32 - Pausing for 10000 ms
-19:28:34 - Sending message NEW_NODE from 1200 to 1100 | 0 | 
-19:28:35 - Got message WELCOME from 1100 to 1200 | 0 | 
-19:28:36 - Sending message UPDATE from 1200 to 1100 | 1 | 
-19:28:37 - Got message UPDATE from 1200 to 1200 | 1 | 1100
-19:28:42 - Starting code for following node with chord id: 1100 and port: 1100
-19:28:42 - Node 1100 added as a pending follower for node: 1200
-19:28:42 - Pausing for 10000 ms
-19:28:43 - Got message NEW_NODE from 1300 to 1200 | 0 | 
-19:28:44 - Sending message NEW_NODE from 1300 to 1100 | 2 | 
-19:28:46 - Got message REMOVE_NODE from 1100 to 1200 | 3 | 
-19:28:46 - Taking over responsibilities from node: [28|localhost|1100]
-19:28:46 - Added key: 26, value: docs/stoptest.txt
-19:28:52 - File uploaded successfully: docs/data2.txt with key: 26
-19:28:52 - Pausing for 10000 ms
-19:28:53 - Sending message PUT from 1200 to 1100 | 3 | 26:docs/data2.txt
-19:29:02 - Visibility set to private.
-19:29:02 - Pausing for 3000 ms
-19:29:03 - Got message NEW_NODE from 1600 to 1200 | 0 | 
-19:29:04 - Sending message NEW_NODE from 1600 to 1100 | 4 | 
-19:29:05 - Sending message to node 1400 to list files, from node 1200
-19:29:05 - ValueMap: {26=docs/stoptest.txt}
-19:29:05 - Pausing for 10000 ms
-19:29:06 - Sending message LIST_FILES from 1200 to 1400 | 5 | 
-19:29:07 - Got message LIST_FILES_RESPONSE from 1400 to 1200 | 2 | {23=media/image.png}
-19:29:07 - Files in the directory: {23=media/image.png} from node 1400
-19:29:15 - Pending followers: [1100]
-19:29:15 - Followers: []
-19:29:15 - Pausing for 12000 ms
-19:29:27 - Stopping...
-19:29:27 - Transferring responsibilities to successor at port 1100
-19:29:27 - Node at port 1200 has stopped.
-19:29:28 - Sending message REMOVE_NODE from 1200 to 1100 | 6 | 
+16:34:34 - Starting servent [48|localhost|1200]
+16:34:34 - Pausing for 40000 ms
+16:34:35 - Sending message NEW_NODE from 1200 to 1100 | 0 | 
+16:34:36 - Got message WELCOME from 1100 to 1200 | 0 | 
+16:34:37 - Sending message UPDATE from 1200 to 1100 | 1 | 
+16:34:37 - Got message UPDATE from 1200 to 1200 | 1 | 1100
+16:34:45 - Got message NEW_NODE from 1300 to 1200 | 0 | 
+16:34:47 - Sending message NEW_NODE from 1300 to 1100 | 2 | 
+16:34:50 - Got message UPDATE from 1300 to 1200 | 3 | 1100
+16:34:51 - Sending message UPDATE from 1300 to 1300 | 3 | 1100,1200
+16:34:59 - Got message UPDATE from 1400 to 1200 | 5 | 1100
+16:35:00 - Sending message UPDATE from 1400 to 1300 | 4 | 1100,1200
+16:35:07 - Got message NEW_NODE from 1600 to 1200 | 6 | 
+16:35:09 - Sending message NEW_NODE from 1600 to 1300 | 5 | 
+16:35:13 - Got message UPDATE from 1600 to 1200 | 7 | 1300,1400,1100
+16:35:14 - Starting code for following node with chord id: 1100 and port: 1100
+16:35:14 - Node 1100 added as a pending follower for node: 1200
+16:35:14 - Pausing for 10000 ms
+16:35:15 - Sending message UPDATE from 1600 to 1600 | 6 | 1300,1400,1100,1200
+16:35:15 - Got message PUT from 1100 to 1200 | 8 | 48:docs/test.txt
+16:35:24 - File uploaded successfully: docs/data2.txt with key: 26
+16:35:24 - Pausing for 10000 ms
+16:35:25 - Sending message PUT from 1200 to 1600 | 7 | 26:docs/data2.txt
+16:35:28 - Got message REMOVE_NODE from 1100 to 1200 | 9 | 
+16:35:28 - 1200 is taking over responsibilities from node: 1100
+16:35:28 - Added key: 26, value: docs/data2.txt
+16:35:28 - New predecessor is: 1400
+16:35:29 - Sending message REMOVING_UPDATE from 1100 to 1200 | 8 | 
+16:35:29 - Got message REMOVING_UPDATE from 1100 to 1200 | 8 | 
+16:35:29 - Received REMOVING_UPDATE message text:  msg type REMOVING_UPDATE
+16:35:29 - REMOVING UPDATE handler got message from 1100 with text: 
+16:35:29 - Removing node: 1100
+16:35:29 - allNodeInfo before removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400], [28|localhost|1100]]
+16:35:29 - Removing node: 1100 with chordId: 28
+16:35:29 - allNodeInfo after removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
+16:35:29 - allNodeInfo after sorting: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
+16:35:29 - Successor table before update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
+16:35:29 - Successor table after update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
+16:35:30 - Sending message REMOVING_UPDATE from 1100 to 1600 | 9 | 1200
+16:35:33 - Got message REMOVING_UPDATE from 1100 to 1200 | 5 | 1200
+16:35:33 - Received REMOVING_UPDATE message text: 1200 msg type REMOVING_UPDATE
+16:35:33 - REMOVING UPDATE handler got message from 1100 with text: 1200
+16:35:33 - KRAJ
+16:35:34 - Visibility set to private.
+16:35:34 - Pausing for 3000 ms
+16:35:37 - Sending message to node 1400 to list files, from node 1200
+16:35:37 - ValueMap: {48=docs/test.txt, 26=docs/data2.txt}
+16:35:37 - Pausing for 10000 ms
+16:35:38 - Sending message LIST_FILES from 1200 to 1400 | 10 | 
+16:35:39 - Got message PUT from 1400 to 1200 | 7 | 37:shared/third.txt
+16:35:39 - Got message LIST_FILES_RESPONSE from 1400 to 1200 | 6 | {23=media/image.png, 13=videos/video.mp4}
+16:35:39 - Files in the directory: {23=media/image.png, 13=videos/video.mp4} from node 1400
+16:35:47 - Pending followers: [1100]
+16:35:47 - Followers: []
+16:35:47 - Pausing for 12000 ms
+16:35:51 - Got message LIST_FILES from 1300 to 1200 | 8 | 
