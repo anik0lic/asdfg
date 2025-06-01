@@ -2,10 +2,7 @@ package servent.handler;
 
 import app.AppConfig;
 import app.ServentInfo;
-import servent.message.Message;
-import servent.message.MessageType;
-import servent.message.RemoveNodeMessage;
-import servent.message.RemovingUpdateMessage;
+import servent.message.*;
 import servent.message.util.MessageUtil;
 
 import java.util.Map;
@@ -33,15 +30,19 @@ public class RemoveNodeHandler implements MessageHandler {
 
             AppConfig.timestampedStandardPrint(clientMessage.getReceiverPort() + " is taking over responsibilities from node: " + removedNodePort);
 
-            transferredKeys.forEach((key, value) -> {
-                AppConfig.chordState.getValueMap().put(key, value);
-                AppConfig.timestampedStandardPrint("Added key: " + key + ", value: " + value);
-            });
-
             AppConfig.chordState.setPredecessor(new ServentInfo("localhost", removeNodeMessage.getPredecessorPort()));
             AppConfig.timestampedStandardPrint("New predecessor is: " + removeNodeMessage.getPredecessorPort());
 
-//            posaljemo update sledecem
+            transferredKeys.forEach((key, value) -> {
+                AppConfig.chordState.getValueMap().put(key, value);
+                MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
+                        AppConfig.chordState.getPredecessor().getListenerPort(), "add", "succ", AppConfig.chordState.getValueMap()));
+
+                MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
+                        AppConfig.chordState.getSuccessorTable()[0].getListenerPort(), "add", "pred", AppConfig.chordState.getValueMap()));
+                AppConfig.timestampedStandardPrint("Added key: " + key + ", value: " + value);
+            });
+
             MessageUtil.sendMessage(new RemovingUpdateMessage(removedNodePort, AppConfig.myServentInfo.getListenerPort(), ""));
 
         } else {

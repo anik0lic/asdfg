@@ -360,6 +360,14 @@ public class ChordState {
 		}
 		AppConfig.timestampedStandardPrint("allNodeInfo after removal: " + allNodeInfo);
 
+        if (followers.remove(removedNode.getListenerPort())) {
+			AppConfig.timestampedStandardPrint("Removed follower: " + removedNode.getListenerPort());
+		}
+
+        if (pendingFollowers.remove(removedNode.getListenerPort())) {
+			AppConfig.timestampedStandardPrint("Removed pending follower: " + removedNode.getListenerPort());
+		}
+
 		List<ServentInfo> newList = new ArrayList<>();
 		List<ServentInfo> newList2 = new ArrayList<>();
 
@@ -479,4 +487,21 @@ public class ChordState {
 		}
 	}
 
+//	public void removeFollower(int senderPort) {
+//		if (followers.contains(senderPort)) {
+//			followers.remove(senderPort);
+//			AppConfig.timestampedStandardPrint("Removed follower: " + senderPort);
+//		} else {
+//			AppConfig.timestampedErrorPrint("Port " + senderPort + " is not in the list of followers.");
+//		}
+//	}
+//
+//	public void removePendingFollower(int senderPort) {
+//		if (pendingFollowers.contains(senderPort)) {
+//			pendingFollowers.remove(senderPort);
+//			AppConfig.timestampedStandardPrint("Removed pending follower: " + senderPort);
+//		} else {
+//			AppConfig.timestampedErrorPrint("Port " + senderPort + " is not in the list of pending followers.");
+//		}
+//	}
 }

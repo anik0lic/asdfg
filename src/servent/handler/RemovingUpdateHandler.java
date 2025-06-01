@@ -17,11 +17,10 @@ public class RemovingUpdateHandler implements MessageHandler {
 
     @Override
     public void run() {
-        AppConfig.timestampedStandardPrint("Received REMOVING_UPDATE message text: " + clientMessage.getMessageText() + " msg type " + clientMessage.getMessageType());
-//        if (clientMessage.getMessageType() != MessageType.REMOVING_UPDATE) {
-//            AppConfig.timestampedErrorPrint("REMOVING_UPDATE got invalid type: " + clientMessage.getMessageType());
-//            return;
-//        }
+        if (clientMessage.getMessageType() != MessageType.REMOVING_UPDATE) {
+            AppConfig.timestampedErrorPrint("REMOVING_UPDATE got invalid type: " + clientMessage.getMessageType());
+            return;
+        }
 
         AppConfig.timestampedStandardPrint("REMOVING UPDATE handler got message from " + clientMessage.getSenderPort() + " with text: " + (clientMessage.getMessageText()));
 
@@ -38,7 +37,7 @@ public class RemovingUpdateHandler implements MessageHandler {
             Message nextUpdate = new RemovingUpdateMessage(clientMessage.getSenderPort(), AppConfig.chordState.getNextNodePort(), newMessageText);
             MessageUtil.sendMessage(nextUpdate);
         } else {
-            AppConfig.timestampedStandardPrint("KRAJ");
+            AppConfig.timestampedStandardPrint("End of removing update chain reached for port: " + clientMessage.getSenderPort());
         }
     }
 }

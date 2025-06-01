@@ -1,0 +1,8 @@
+21:46:25 - Couldn't send message: [4|1300|16|add|BACKUP|1200|48]
+21:46:25 - Couldn't send message: [4|1300|14|add|BACKUP|1200|48]
+21:46:26 - Couldn't send message: [4|1300|20|add|BACKUP|1200|48]
+21:46:26 - Couldn't send message: [4|1300|18|add|BACKUP|1200|48]
+21:46:26 - Port 1400 is not in the list of pending followers.
+21:46:26 - Couldn't send message: [4|1300|12|add|BACKUP|1200|48]
+21:46:27 - Couldn't send message: [0|1600|22|1300|REMOVING_UPDATE|1200|48]
+21:46:46 - Couldn't send message: [4|1300|23||REMOVE_NODE|1200|48]

@@ -31,26 +31,26 @@ public class StopCommand implements CLICommand {
 
 	@Override
 	public void execute(String args) {
-//		try (Socket bsSocket = new Socket("localhost", AppConfig.BOOTSTRAP_PORT)) {
-//			PrintWriter bsWriter = new PrintWriter(bsSocket.getOutputStream());
-//			bsWriter.write("Stop\n" + AppConfig.myServentInfo.getListenerPort() + "\n");
-//			bsWriter.flush();
-//		} catch (IOException e) {
-//			AppConfig.timestampedErrorPrint("Error notifying bootstrap about stop.");
-//		}
-//
-//		if(AppConfig.chordState.getSuccessorTable() == null) {
-//			AppConfig.timestampedStandardPrint("No successor table found. Stopping immediately.");
-//			parser.stop();
-//			listener.stop();
-//			return;
-//		}
-//
-//		int successorPort = AppConfig.chordState.getNextNodePort();
-//		AppConfig.timestampedStandardPrint("Transferring responsibilities to successor at port " + successorPort);
-//
-//		RemoveNodeMessage removeNodeMessage = new RemoveNodeMessage(AppConfig.myServentInfo.getListenerPort(), successorPort, AppConfig.chordState.getValueMap(), AppConfig.chordState.getPredecessor().getListenerPort());
-//		MessageUtil.sendMessage(removeNodeMessage);
+		try (Socket bsSocket = new Socket("localhost", AppConfig.BOOTSTRAP_PORT)) {
+			PrintWriter bsWriter = new PrintWriter(bsSocket.getOutputStream());
+			bsWriter.write("Stop\n" + AppConfig.myServentInfo.getListenerPort() + "\n");
+			bsWriter.flush();
+		} catch (IOException e) {
+			AppConfig.timestampedErrorPrint("Error notifying bootstrap about stop.");
+		}
+
+		if(AppConfig.chordState.getSuccessorTable() == null) {
+			AppConfig.timestampedStandardPrint("No successor table found. Stopping immediately.");
+			parser.stop();
+			listener.stop();
+			return;
+		}
+
+		int successorPort = AppConfig.chordState.getNextNodePort();
+		AppConfig.timestampedStandardPrint("Transferring responsibilities to successor at port " + successorPort);
+
+		RemoveNodeMessage removeNodeMessage = new RemoveNodeMessage(AppConfig.myServentInfo.getListenerPort(), successorPort, AppConfig.chordState.getValueMap(), AppConfig.chordState.getPredecessor().getListenerPort());
+		MessageUtil.sendMessage(removeNodeMessage);
 
 		AppConfig.timestampedStandardPrint("Stopping...");
 		parser.stop();

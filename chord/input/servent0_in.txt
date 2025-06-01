@@ -1,10 +1,7 @@
 pause 50000
 visibility public
-upload docs/test.txt
+upload files/fajl1.txt
 pause 13000
 list_files 1100
 pause 5000
-remove_file media/image.png
-pause 10000
-follow 1200
 stop

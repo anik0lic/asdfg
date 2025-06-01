@@ -1,58 +1,39 @@
-20:46:52 - Starting servent [28|localhost|1100]
-20:46:52 - Pausing for 50000 ms
-20:46:52 - First node in Chord system.
-20:46:52 - Node 28 had token: false now has token: true
-20:47:04 - Got message NEW_NODE from 1200 to 1100 | 0 | 
-20:47:04 - Sending message WELCOME from 1100 to 1200 | 0 | 
-20:47:05 - Got message UPDATE from 1200 to 1100 | 1 | 
-20:47:06 - Sending message UPDATE from 1200 to 1200 | 1 | 1100
-20:47:13 - Got message NEW_NODE from 1300 to 1100 | 0 | 
-20:47:15 - Sending message WELCOME from 1100 to 1300 | 2 | 
-20:47:15 - Got message UPDATE from 1300 to 1100 | 1 | 
-20:47:16 - Sending message UPDATE from 1300 to 1200 | 3 | 1100
-20:47:26 - Got message NEW_NODE from 1400 to 1100 | 2 | 
-20:47:26 - Sending message WELCOME from 1100 to 1400 | 4 | 
-20:47:28 - Got message UPDATE from 1400 to 1100 | 1 | 
-20:47:28 - Sending message UPDATE from 1400 to 1200 | 5 | 1100
-20:47:34 - Got message NEW_NODE from 1600 to 1100 | 0 | 
-20:47:35 - Sending message NEW_NODE from 1600 to 1200 | 6 | 
-20:47:36 - Got message BACKUP from 1400 to 1100 | 3 | add
-20:47:36 - Adding files to predecessor map: {23=media/image.png}
-20:47:36 - Map before removal: null
-20:47:36 - Map after removal: {23=media/image.png}
-20:47:40 - Got message UPDATE from 1600 to 1100 | 4 | 1300,1400
-20:47:41 - Sending message UPDATE from 1600 to 1200 | 7 | 1300,1400,1100
-20:47:42 - Visibility set to public.
-20:47:42 - Pausing for 13000 ms
-20:47:43 - Sending message PUT from 1100 to 1200 | 8 | 48:docs/test.txt
-20:47:44 - Got message BACKUP from 1200 to 1100 | 7 | add
-20:47:44 - Adding files to successor map: {48=docs/test.txt}
-20:47:44 - Map before removal: null
-20:47:44 - Map after removal: {48=docs/test.txt}
-20:47:55 - Files for node: 1100 are: {}
-20:47:55 - Pausing for 5000 ms
-20:47:56 - Got message PUT from 1400 to 1100 | 6 | 26:docs/data2.txt
-20:47:56 - File uploaded successfully: docs/data2.txt with key: 26
-20:47:56 - Sending message BACKUP from 1100 to 1400 | 9 | add
-20:47:57 - Sending message BACKUP from 1100 to 1200 | 10 | add
-20:47:58 - Got message BACKUP from 1400 to 1100 | 8 | add
-20:47:58 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
-20:47:58 - Map before removal: {23=media/image.png}
-20:47:58 - Map after removal: {23=media/image.png, 13=videos/video.mp4}
-20:48:00 - Pausing for 10000 ms
-20:48:01 - Sending message REMOVE_FILE from 1100 to 1200 | 11 | 23 media/image.png
-20:48:05 - Got message BACKUP from 1400 to 1100 | 10 | remove
-20:48:05 - Removing files from predecessor map: {13=videos/video.mp4}
-20:48:05 - Map before removal: {23=media/image.png, 13=videos/video.mp4}
-20:48:05 - Map after removal: {13=videos/video.mp4}
-20:48:06 - Got message LIST_FILES from 1600 to 1100 | 5 | 
-20:48:07 - Sending message LIST_FILES_RESPONSE from 1100 to 1600 | 12 | {26=docs/data2.txt}
-20:48:07 - Got message PUT from 1400 to 1100 | 12 | 37:shared/third.txt
-20:48:08 - Sending message PUT from 1100 to 1200 | 13 | 37:shared/third.txt
-20:48:09 - Got message BACKUP from 1200 to 1100 | 12 | add
-20:48:09 - Adding files to successor map: {48=docs/test.txt, 37=shared/third.txt}
-20:48:09 - Map before removal: {48=docs/test.txt}
-20:48:09 - Map after removal: {48=docs/test.txt, 37=shared/third.txt}
-20:48:10 - Node 1200 added as a pending follower for node: 1100
-20:48:10 - Stopping...
-20:48:10 - Node at port 1100 has stopped.
+21:44:47 - Starting servent [28|localhost|1100]
+21:44:48 - Pausing for 50000 ms
+21:44:48 - First node in Chord system.
+21:44:48 - Node 28 had token: false now has token: true
+21:44:59 - Got message NEW_NODE from 1200 to 1100 | 0 | 
+21:45:00 - Sending message WELCOME from 1100 to 1200 | 0 | 
+21:45:01 - Got message UPDATE from 1200 to 1100 | 1 | 
+21:45:03 - Sending message UPDATE from 1200 to 1200 | 1 | 1100
+21:45:09 - Got message NEW_NODE from 1300 to 1100 | 2 | 
+21:45:11 - Sending message WELCOME from 1100 to 1300 | 2 | 
+21:45:11 - Got message UPDATE from 1300 to 1100 | 1 | 
+21:45:12 - Sending message UPDATE from 1300 to 1200 | 3 | 1100
+21:45:18 - Got message NEW_NODE from 1400 to 1100 | 0 | 
+21:45:19 - Sending message WELCOME from 1100 to 1400 | 4 | 
+21:45:21 - Got message UPDATE from 1400 to 1100 | 1 | 
+21:45:22 - Sending message UPDATE from 1400 to 1200 | 5 | 1100
+21:45:29 - Got message NEW_NODE from 1600 to 1100 | 0 | 
+21:45:29 - Sending message NEW_NODE from 1600 to 1200 | 6 | 
+21:45:30 - Got message BACKUP from 1400 to 1100 | 3 | add
+21:45:30 - Adding files to predecessor map: {23=media/image.png}
+21:45:34 - Got message UPDATE from 1600 to 1100 | 4 | 1300,1400
+21:45:35 - Sending message UPDATE from 1600 to 1200 | 7 | 1300,1400,1100
+21:45:38 - Visibility set to public.
+21:45:38 - Pausing for 13000 ms
+21:45:39 - Sending message PUT from 1100 to 1200 | 8 | 38:files/fajl1.txt
+21:45:39 - Got message BACKUP from 1200 to 1100 | 7 | add
+21:45:39 - Adding files to successor map: {38=files/fajl1.txt}
+21:45:51 - Files for node: 1100 are: {}
+21:45:51 - Pausing for 5000 ms
+21:45:52 - Got message PUT from 1400 to 1100 | 6 | 26:docs/data2.txt
+21:45:52 - File uploaded successfully: docs/data2.txt with key: 26
+21:45:53 - Sending message BACKUP from 1100 to 1200 | 10 | add
+21:45:53 - Sending message BACKUP from 1100 to 1400 | 9 | add
+21:45:54 - Got message BACKUP from 1400 to 1100 | 8 | add
+21:45:54 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
+21:45:56 - Transferring responsibilities to successor at port 1200
+21:45:56 - Stopping...
+21:45:56 - Node at port 1100 has stopped.
+21:45:56 - Sending message REMOVE_NODE from 1100 to 1200 | 11 | 
