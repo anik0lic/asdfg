@@ -31,9 +31,7 @@ public class TokenRequestHandler implements MessageHandler {
             requestNumbers[tokenRequestMessage.getChordId()] = Math.max(sequenceNumber, requestNumbers[tokenRequestMessage.getChordId()]);
 
             if (AppConfig.mutex.hasToken() && AppConfig.mutex.getRequestQueue().isEmpty() &&
-                    (requestNumbers[tokenRequestMessage.getChordId()] > AppConfig.mutex.getLN()[tokenRequestMessage.getChordId()] ||
-                            requestNumbers[tokenRequestMessage.getChordId()] == AppConfig.mutex.getLN()[tokenRequestMessage.getChordId()] &&
-                            tokenRequestMessage.getChordId() < AppConfig.myServentInfo.getChordId())) {
+                    shouldSendToken(tokenRequestMessage.getChordId(), requestNumbers, AppConfig.mutex.getLN())) {
                 AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getListenerPort() + " has token, sending it to " + tokenRequestMessage.getSenderPort() + " with request number: " + requestNumber + " and sequence number: " + sequenceNumber);
 
                 AppConfig.mutex.setHasToken(false);
@@ -43,5 +41,10 @@ public class TokenRequestHandler implements MessageHandler {
                 MessageUtil.sendMessage(new TokenRequestMessage(tokenRequestMessage.getSenderPort(), AppConfig.chordState.getNextNodePort(), tokenRequestMessage.getChordId(), requestNumbers[tokenRequestMessage.getChordId()], sequenceNumber));
             }
         }
+    }
+
+    private boolean shouldSendToken(int chordId, int[] requestNumbers, int[] LN) {
+        return requestNumbers[chordId] > LN[chordId] ||
+                (requestNumbers[chordId] == LN[chordId] && chordId < AppConfig.myServentInfo.getChordId());
     }
 }

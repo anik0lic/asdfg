@@ -1,39 +1,39 @@
-21:44:47 - Starting servent [28|localhost|1100]
-21:44:48 - Pausing for 50000 ms
-21:44:48 - First node in Chord system.
-21:44:48 - Node 28 had token: false now has token: true
-21:44:59 - Got message NEW_NODE from 1200 to 1100 | 0 | 
-21:45:00 - Sending message WELCOME from 1100 to 1200 | 0 | 
-21:45:01 - Got message UPDATE from 1200 to 1100 | 1 | 
-21:45:03 - Sending message UPDATE from 1200 to 1200 | 1 | 1100
-21:45:09 - Got message NEW_NODE from 1300 to 1100 | 2 | 
-21:45:11 - Sending message WELCOME from 1100 to 1300 | 2 | 
-21:45:11 - Got message UPDATE from 1300 to 1100 | 1 | 
-21:45:12 - Sending message UPDATE from 1300 to 1200 | 3 | 1100
-21:45:18 - Got message NEW_NODE from 1400 to 1100 | 0 | 
-21:45:19 - Sending message WELCOME from 1100 to 1400 | 4 | 
-21:45:21 - Got message UPDATE from 1400 to 1100 | 1 | 
-21:45:22 - Sending message UPDATE from 1400 to 1200 | 5 | 1100
-21:45:29 - Got message NEW_NODE from 1600 to 1100 | 0 | 
-21:45:29 - Sending message NEW_NODE from 1600 to 1200 | 6 | 
-21:45:30 - Got message BACKUP from 1400 to 1100 | 3 | add
-21:45:30 - Adding files to predecessor map: {23=media/image.png}
-21:45:34 - Got message UPDATE from 1600 to 1100 | 4 | 1300,1400
-21:45:35 - Sending message UPDATE from 1600 to 1200 | 7 | 1300,1400,1100
-21:45:38 - Visibility set to public.
-21:45:38 - Pausing for 13000 ms
-21:45:39 - Sending message PUT from 1100 to 1200 | 8 | 38:files/fajl1.txt
-21:45:39 - Got message BACKUP from 1200 to 1100 | 7 | add
-21:45:39 - Adding files to successor map: {38=files/fajl1.txt}
-21:45:51 - Files for node: 1100 are: {}
-21:45:51 - Pausing for 5000 ms
-21:45:52 - Got message PUT from 1400 to 1100 | 6 | 26:docs/data2.txt
-21:45:52 - File uploaded successfully: docs/data2.txt with key: 26
-21:45:53 - Sending message BACKUP from 1100 to 1200 | 10 | add
-21:45:53 - Sending message BACKUP from 1100 to 1400 | 9 | add
-21:45:54 - Got message BACKUP from 1400 to 1100 | 8 | add
-21:45:54 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
-21:45:56 - Transferring responsibilities to successor at port 1200
-21:45:56 - Stopping...
-21:45:56 - Node at port 1100 has stopped.
-21:45:56 - Sending message REMOVE_NODE from 1100 to 1200 | 11 | 
+22:16:20 - Starting servent [28|localhost|1100]
+22:16:20 - Pausing for 50000 ms
+22:16:20 - First node in Chord system.
+22:16:20 - Node 28 had token: false now has token: true
+22:16:31 - Got message NEW_NODE from 1200 to 1100 | 0 | 
+22:16:32 - Sending message WELCOME from 1100 to 1200 | 0 | 
+22:16:33 - Got message UPDATE from 1200 to 1100 | 1 | 
+22:16:34 - Sending message UPDATE from 1200 to 1200 | 1 | 1100
+22:16:42 - Got message NEW_NODE from 1300 to 1100 | 2 | 
+22:16:43 - Sending message WELCOME from 1100 to 1300 | 2 | 
+22:16:44 - Got message UPDATE from 1300 to 1100 | 1 | 
+22:16:45 - Sending message UPDATE from 1300 to 1200 | 3 | 1100
+22:16:53 - Got message NEW_NODE from 1400 to 1100 | 2 | 
+22:16:54 - Sending message WELCOME from 1100 to 1400 | 4 | 
+22:16:55 - Got message UPDATE from 1400 to 1100 | 1 | 
+22:16:55 - Sending message UPDATE from 1400 to 1200 | 5 | 1100
+22:17:03 - Got message BACKUP from 1400 to 1100 | 3 | add
+22:17:03 - Adding files to predecessor map: {23=media/image.png}
+22:17:05 - Got message UPDATE from 1600 to 1100 | 4 | 1300,1400
+22:17:06 - Sending message UPDATE from 1600 to 1200 | 6 | 1300,1400,1100
+22:17:10 - Visibility set to public.
+22:17:10 - Pausing for 13000 ms
+22:17:11 - Sending message PUT from 1100 to 1200 | 7 | 38:files/fajl1.txt
+22:17:13 - Got message BACKUP from 1200 to 1100 | 6 | add
+22:17:13 - Adding files to successor map: {38=files/fajl1.txt}
+22:17:23 - Files for node: 1100 are: {}
+22:17:23 - Pausing for 5000 ms
+22:17:24 - Got message PUT from 1400 to 1100 | 6 | 26:docs/data2.txt
+22:17:24 - File uploaded successfully: docs/data2.txt with key: 26
+22:17:25 - Sending message BACKUP from 1100 to 1400 | 8 | add
+22:17:25 - Sending message BACKUP from 1100 to 1200 | 9 | add
+22:17:27 - Got message BACKUP from 1400 to 1100 | 8 | add
+22:17:27 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
+22:17:28 - Transferring token to successor before stopping...
+22:17:28 - Transferring responsibilities to successor at port 1200
+22:17:28 - Stopping...
+22:17:28 - Node at port 1100 has stopped.
+22:17:29 - Sending message REMOVE_NODE from 1100 to 1200 | 11 | 
+22:17:29 - Sending message SEND_TOKEN from 1100 to 1200 | 10 | 

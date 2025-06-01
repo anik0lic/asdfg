@@ -47,6 +47,10 @@ public class StopCommand implements CLICommand {
 		}
 
 		int successorPort = AppConfig.chordState.getNextNodePort();
+		if (AppConfig.mutex.hasToken()) {
+			AppConfig.timestampedStandardPrint("Transferring token to successor before stopping...");
+			AppConfig.mutex.sendToken(successorPort);
+		}
 		AppConfig.timestampedStandardPrint("Transferring responsibilities to successor at port " + successorPort);
 
 		RemoveNodeMessage removeNodeMessage = new RemoveNodeMessage(AppConfig.myServentInfo.getListenerPort(), successorPort, AppConfig.chordState.getValueMap(), AppConfig.chordState.getPredecessor().getListenerPort());
