@@ -1,111 +1,133 @@
-22:16:30 - Starting servent [48|localhost|1200]
-22:16:30 - Pausing for 40000 ms
-22:16:31 - Sending message NEW_NODE from 1200 to 1100 | 0 | 
-22:16:33 - Got message WELCOME from 1100 to 1200 | 0 | 
-22:16:33 - Sending message UPDATE from 1200 to 1100 | 1 | 
-22:16:34 - Got message UPDATE from 1200 to 1200 | 1 | 1100
-22:16:42 - Got message NEW_NODE from 1300 to 1200 | 0 | 
-22:16:42 - Sending message NEW_NODE from 1300 to 1100 | 2 | 
-22:16:45 - Got message UPDATE from 1300 to 1200 | 3 | 1100
-22:16:46 - Sending message UPDATE from 1300 to 1300 | 3 | 1100,1200
-22:16:55 - Got message UPDATE from 1400 to 1200 | 5 | 1100
-22:16:56 - Sending message UPDATE from 1400 to 1300 | 4 | 1100,1200
-22:17:06 - Got message UPDATE from 1600 to 1200 | 6 | 1300,1400,1100
-22:17:07 - Sending message UPDATE from 1600 to 1600 | 5 | 1300,1400,1100,1200
-22:17:10 - Node 1100 added as a pending follower for node: 1200
-22:17:10 - Pausing for 10000 ms
-22:17:11 - Got message PUT from 1100 to 1200 | 7 | 38:files/fajl1.txt
-22:17:11 - File uploaded successfully: files/fajl1.txt with key: 38
-22:17:12 - Sending message BACKUP from 1200 to 1600 | 7 | add
-22:17:13 - Sending message BACKUP from 1200 to 1100 | 6 | add
-22:17:20 - Pausing for 10000 ms
-22:17:21 - Sending message PUT from 1200 to 1600 | 8 | 26:docs/data2.txt
-22:17:25 - Got message BACKUP from 1100 to 1200 | 9 | add
-22:17:25 - Adding files to predecessor map: {26=docs/data2.txt}
-22:17:29 - Got message REMOVE_NODE from 1100 to 1200 | 11 | 
-22:17:29 - 1200 is taking over responsibilities from node: 1100
-22:17:29 - New predecessor is: 1400
-22:17:29 - Added key: 26, value: docs/data2.txt
-22:17:29 - Got message SEND_TOKEN from 1100 to 1200 | 10 | 
-22:17:30 - Sending message BACKUP from 1200 to 1600 | 10 | add
-22:17:30 - Sending message SEND_TOKEN from 1100 to 1600 | 12 | 
-22:17:30 - Visibility set to private.
-22:17:30 - Pausing for 3000 ms
-22:17:30 - Sending message BACKUP from 1200 to 1400 | 9 | add
-22:17:31 - Sending message REMOVING_UPDATE from 1100 to 1200 | 11 | 
-22:17:31 - Got message REMOVING_UPDATE from 1100 to 1200 | 11 | 
-22:17:31 - REMOVING UPDATE handler got message from 1100 with text: 
-22:17:31 - Node 48 requesting critical section with RN[48] = 1
-22:17:31 - Node 48 has acquired the token and can enter the critical section.
-22:17:31 - Removing node: 1100
-22:17:31 - allNodeInfo before removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400], [28|localhost|1100]]
-22:17:31 - Removing node: 1100 with chordId: 28
-22:17:31 - allNodeInfo after removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
-22:17:31 - Removed pending follower: 1100
-22:17:31 - allNodeInfo after sorting: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
-22:17:31 - Successor table before update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
-22:17:31 - Successor table after update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
-22:17:31 - Node 48 released critical section
-22:17:31 - Released token after removing node.
-22:17:31 - Sending message REMOVING_UPDATE from 1100 to 1600 | 14 | 1200
-22:17:32 - Sending message TOKEN_REQUEST from 1200 to 1600 | 13 | 
-22:17:33 - Sending message to node 1400 to list files, from node 1200
-22:17:33 - Pausing for 10000 ms
-22:17:34 - Sending message LIST_FILES from 1200 to 1400 | 15 | 
-22:17:35 - Got message LIST_FILES_RESPONSE from 1400 to 1200 | 15 | {23=media/image.png, 13=videos/video.mp4}
-22:17:35 - Files in the directory: {23=media/image.png, 13=videos/video.mp4} from node 1400
-22:17:35 - Got message REMOVING_UPDATE from 1100 to 1200 | 13 | 1200
-22:17:35 - REMOVING UPDATE handler got message from 1100 with text: 1200
-22:17:35 - End of removing update chain reached for port: 1100
-22:17:35 - Got message TOKEN_REQUEST from 1200 to 1200 | 14 | 
-22:17:35 - Sending token request for chord ID: 48 with request number: 1 and sequence number: 1
-22:17:35 - Got message PUT from 1400 to 1200 | 16 | 37:shared/third.txt
-22:17:35 - File uploaded successfully: shared/third.txt with key: 37
-22:17:36 - Sending message BACKUP from 1200 to 1600 | 18 | add
-22:17:36 - Sending message TOKEN_REQUEST from 1200 to 1600 | 16 | 
-22:17:37 - Sending message BACKUP from 1200 to 1400 | 17 | add
-22:17:39 - Got message TOKEN_REQUEST from 1200 to 1200 | 17 | 
-22:17:39 - Sending token request for chord ID: 48 with request number: 1 and sequence number: 1
-22:17:40 - Sending message TOKEN_REQUEST from 1200 to 1600 | 19 | 
-22:17:42 - Got message TOKEN_REQUEST from 1200 to 1200 | 18 | 
-22:17:42 - Sending token request for chord ID: 48 with request number: 1 and sequence number: 1
-22:17:42 - Sending message TOKEN_REQUEST from 1200 to 1600 | 20 | 
-22:17:43 - Pending followers: []
-22:17:43 - Followers: []
-22:17:43 - Pausing for 12000 ms
-22:17:46 - Got message TOKEN_REQUEST from 1200 to 1200 | 19 | 
-22:17:46 - Sending token request for chord ID: 48 with request number: 1 and sequence number: 1
-22:17:47 - Got message LIST_FILES from 1300 to 1200 | 17 | 
-22:17:47 - Sending message TOKEN_REQUEST from 1200 to 1600 | 21 | 
-22:17:49 - Got message TOKEN_REQUEST from 1200 to 1200 | 20 | 
-22:17:49 - Sending token request for chord ID: 48 with request number: 1 and sequence number: 1
-22:17:50 - Got message REMOVE_NODE from 1400 to 1200 | 21 | 
-22:17:50 - 1200 is taking over responsibilities from node: 1400
-22:17:50 - New predecessor is: 1300
-22:17:50 - Added key: 23, value: media/image.png
-22:17:50 - Added key: 13, value: videos/video.mp4
-22:17:50 - Sending message TOKEN_REQUEST from 1200 to 1600 | 22 | 
-22:17:51 - Sending message BACKUP from 1200 to 1300 | 25 | add
-22:17:51 - Sending message BACKUP from 1200 to 1600 | 24 | add
-22:17:51 - Sending message BACKUP from 1200 to 1300 | 23 | add
-22:17:51 - Sending message BACKUP from 1200 to 1600 | 26 | add
-22:17:52 - Sending message REMOVING_UPDATE from 1400 to 1200 | 27 | 
-22:17:52 - Got message REMOVING_UPDATE from 1400 to 1200 | 27 | 
-22:17:52 - REMOVING UPDATE handler got message from 1400 with text: 
-22:17:52 - Node 48 requesting critical section with RN[48] = 2
-22:17:52 - Node 48 has acquired the token and can enter the critical section.
-22:17:52 - Removing node: 1400
-22:17:52 - allNodeInfo before removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
-22:17:52 - Removing node: 1400 with chordId: 24
-22:17:52 - allNodeInfo after removal: [[0|localhost|1600], [4|localhost|1300]]
-22:17:52 - allNodeInfo after sorting: [[0|localhost|1600], [4|localhost|1300]]
-22:17:52 - Successor table before update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
-22:17:52 - Successor table after update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600]]
-22:17:52 - Node 48 released critical section
-22:17:52 - Released token after removing node.
-22:17:53 - Sending message TOKEN_REQUEST from 1200 to 1600 | 28 | 
-22:17:53 - Sending message REMOVING_UPDATE from 1400 to 1600 | 29 | 1200
-22:17:55 - Transferring responsibilities to successor at port 1600
-22:17:55 - Stopping...
-22:17:55 - Node at port 1200 has stopped.
-22:17:56 - Sending message REMOVE_NODE from 1200 to 1600 | 30 | 
+19:24:48 - Starting servent [48|localhost|1200]
+19:24:48 - Pausing for 40000 ms
+19:24:49 - Sending message NEW_NODE from 1200 to 1100 | 0 | 
+19:24:50 - Got message WELCOME from 1100 to 1200 | 0 | 
+19:24:51 - Sending message UPDATE from 1200 to 1100 | 1 | 
+19:24:52 - Got message UPDATE from 1200 to 1200 | 1 | 1100
+19:24:58 - Got message NEW_NODE from 1300 to 1200 | 0 | 
+19:24:59 - Sending message NEW_NODE from 1300 to 1100 | 2 | 
+19:25:02 - Got message UPDATE from 1300 to 1200 | 3 | 1100
+19:25:02 - Sending message UPDATE from 1300 to 1300 | 3 | 1100,1200
+19:25:09 - Got message NEW_NODE from 1400 to 1200 | 0 | 
+19:25:10 - Sending message NEW_NODE from 1400 to 1300 | 4 | 
+19:25:14 - Got message UPDATE from 1400 to 1200 | 5 | 1100
+19:25:15 - Sending message UPDATE from 1400 to 1300 | 5 | 1100,1200
+19:25:20 - Got message NEW_NODE from 1600 to 1200 | 6 | 
+19:25:21 - Sending message NEW_NODE from 1600 to 1300 | 6 | 
+19:25:26 - Got message UPDATE from 1600 to 1200 | 7 | 1300,1400,1100
+19:25:27 - Sending message UPDATE from 1600 to 1600 | 7 | 1300,1400,1100,1200
+19:25:28 - Node 1100 added as a pending follower for node: 1200
+19:25:28 - Pausing for 10000 ms
+19:25:29 - Got message PUT from 1100 to 1200 | 8 | 38:files/fajl1.txt
+19:25:29 - File uploaded successfully: files/fajl1.txt with key: 38
+19:25:30 - Sending message BACKUP from 1200 to 1600 | 9 | add
+19:25:30 - Sending message BACKUP from 1200 to 1100 | 8 | add
+19:25:38 - Pausing for 10000 ms
+19:25:39 - Sending message PUT from 1200 to 1600 | 10 | 26:docs/data2.txt
+19:25:41 - Got message BACKUP from 1100 to 1200 | 10 | add
+19:25:41 - Adding files to predecessor map: {26=docs/data2.txt}
+19:25:46 - Got message SEND_TOKEN from 1100 to 1200 | 11 | 
+19:25:46 - Got message REMOVE_NODE from 1100 to 1200 | 12 | 
+19:25:46 - 1200 is taking over responsibilities from node: 1100
+19:25:46 - New predecessor is: 1400
+19:25:46 - Added key: 26, value: docs/data2.txt
+19:25:47 - Sending message SEND_TOKEN from 1100 to 1600 | 11 | 
+19:25:47 - Sending message BACKUP from 1200 to 1400 | 12 | add
+19:25:48 - Sending message REMOVING_UPDATE from 1100 to 1200 | 14 | 
+19:25:48 - Got message REMOVING_UPDATE from 1100 to 1200 | 14 | 
+19:25:48 - REMOVING UPDATE handler got message from 1100 with text: 
+19:25:48 - Node 48 requesting critical section with RN[48] = 1
+19:25:48 - Node 48 has acquired the token and can enter the critical section.
+19:25:48 - Removing node: 1100
+19:25:48 - allNodeInfo before removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400], [28|localhost|1100]]
+19:25:48 - Removing node: 1100 with chordId: 28
+19:25:48 - allNodeInfo after removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
+19:25:48 - Removed pending follower: 1100
+19:25:48 - allNodeInfo after sorting: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
+19:25:48 - Successor table before update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
+19:25:48 - Successor table after update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
+19:25:48 - Node 48 released critical section
+19:25:48 - Released token after removing node.
+19:25:48 - Visibility set to private.
+19:25:48 - Pausing for 3000 ms
+19:25:48 - Sending message BACKUP from 1200 to 1600 | 13 | add
+19:25:49 - Sending message TOKEN_REQUEST from 1200 to 1600 | 15 | 
+19:25:49 - Got message BACKUP from 1400 to 1200 | 9 | add
+19:25:49 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
+19:25:49 - Sending message REMOVING_UPDATE from 1100 to 1600 | 16 | 1200
+19:25:51 - Sending message to node 1400 to list files, from node 1200
+19:25:51 - Pausing for 10000 ms
+19:25:51 - Got message TOKEN_REQUEST from 1600 to 1200 | 14 | 
+19:25:51 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
+19:25:52 - Got message REMOVING_UPDATE from 1100 to 1200 | 13 | 1200
+19:25:52 - REMOVING UPDATE handler got message from 1100 with text: 1200
+19:25:52 - End of removing update chain reached for port: 1100
+19:25:52 - Sending message LIST_FILES from 1200 to 1400 | 17 | 
+19:25:52 - Got message PUT from 1400 to 1200 | 16 | 37:shared/third.txt
+19:25:52 - File uploaded successfully: shared/third.txt with key: 37
+19:25:52 - Sending message TOKEN_REQUEST from 1600 to 1600 | 18 | 
+19:25:52 - Got message LIST_FILES_RESPONSE from 1400 to 1200 | 17 | {23=media/image.png, 13=videos/video.mp4}
+19:25:52 - Files in the directory: {23=media/image.png, 13=videos/video.mp4} from node 1400
+19:25:53 - Got message TOKEN_REQUEST from 1300 to 1200 | 15 | 
+19:25:53 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
+19:25:53 - Sending message BACKUP from 1200 to 1600 | 20 | add
+19:25:53 - Sending message TOKEN_REQUEST from 1300 to 1600 | 21 | 
+19:25:53 - Sending message BACKUP from 1200 to 1400 | 19 | add
+19:25:54 - Got message TOKEN_REQUEST from 1600 to 1200 | 18 | 
+19:25:54 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
+19:25:55 - Sending message TOKEN_REQUEST from 1600 to 1600 | 22 | 
+19:25:57 - Got message TOKEN_REQUEST from 1300 to 1200 | 19 | 
+19:25:57 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
+19:25:58 - Sending message TOKEN_REQUEST from 1300 to 1600 | 23 | 
+19:25:59 - Got message TOKEN_REQUEST from 1600 to 1200 | 20 | 
+19:25:59 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
+19:26:00 - Sending message TOKEN_REQUEST from 1600 to 1600 | 24 | 
+19:26:01 - Pending followers: []
+19:26:01 - Followers: []
+19:26:01 - Pausing for 12000 ms
+19:26:01 - Got message TOKEN_REQUEST from 1300 to 1200 | 21 | 
+19:26:01 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
+19:26:02 - Sending message TOKEN_REQUEST from 1300 to 1600 | 25 | 
+19:26:02 - Got message TOKEN_REQUEST from 1600 to 1200 | 22 | 
+19:26:02 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
+19:26:04 - Sending message TOKEN_REQUEST from 1600 to 1600 | 26 | 
+19:26:04 - Got message LIST_FILES from 1300 to 1200 | 20 | 
+19:26:05 - Got message TOKEN_REQUEST from 1300 to 1200 | 23 | 
+19:26:05 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
+19:26:06 - Sending message TOKEN_REQUEST from 1300 to 1600 | 27 | 
+19:26:06 - Got message TOKEN_REQUEST from 1600 to 1200 | 24 | 
+19:26:06 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
+19:26:07 - Sending message TOKEN_REQUEST from 1600 to 1600 | 28 | 
+19:26:08 - Got message REMOVE_NODE from 1400 to 1200 | 25 | 
+19:26:08 - 1200 is taking over responsibilities from node: 1400
+19:26:08 - New predecessor is: 1300
+19:26:08 - Added key: 23, value: media/image.png
+19:26:08 - Added key: 13, value: videos/video.mp4
+19:26:08 - Sending message BACKUP from 1200 to 1300 | 29 | add
+19:26:08 - Sending message BACKUP from 1200 to 1600 | 32 | add
+19:26:09 - Sending message BACKUP from 1200 to 1600 | 30 | add
+19:26:09 - Sending message BACKUP from 1200 to 1300 | 31 | add
+19:26:09 - Sending message REMOVING_UPDATE from 1400 to 1200 | 33 | 
+19:26:09 - Got message REMOVING_UPDATE from 1400 to 1200 | 33 | 
+19:26:09 - REMOVING UPDATE handler got message from 1400 with text: 
+19:26:09 - Node 48 requesting critical section with RN[48] = 2
+19:26:09 - Node 48 has acquired the token and can enter the critical section.
+19:26:09 - Removing node: 1400
+19:26:09 - allNodeInfo before removal: [[0|localhost|1600], [4|localhost|1300], [24|localhost|1400]]
+19:26:09 - Removing node: 1400 with chordId: 24
+19:26:09 - allNodeInfo after removal: [[0|localhost|1600], [4|localhost|1300]]
+19:26:09 - allNodeInfo after sorting: [[0|localhost|1600], [4|localhost|1300]]
+19:26:09 - Successor table before update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [24|localhost|1400]]
+19:26:09 - Successor table after update: [[0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600], [0|localhost|1600]]
+19:26:09 - Node 48 released critical section
+19:26:09 - Released token after removing node.
+19:26:09 - Got message BACKUP from 1300 to 1200 | 24 | add
+19:26:09 - Adding files to predecessor map: {}
+19:26:09 - Sending message REMOVING_UPDATE from 1400 to 1600 | 35 | 1200
+19:26:09 - Sending message TOKEN_REQUEST from 1200 to 1600 | 34 | 
+19:26:10 - Got message BACKUP from 1300 to 1200 | 25 | add
+19:26:10 - Adding files to predecessor map: {}
+19:26:13 - Transferring responsibilities to successor at port 1600
+19:26:13 - Stopping...
+19:26:13 - Node at port 1200 has stopped.
+19:26:13 - Sending message REMOVE_NODE from 1200 to 1600 | 36 | 

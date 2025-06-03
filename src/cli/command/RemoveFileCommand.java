@@ -15,11 +15,10 @@ public class RemoveFileCommand implements CLICommand {
         int filePathNumber = 0;
         int scalingFactor = 1;
 
-        // Iterate through the string and calculate a weighted sum
         for (int i = 0; i < filePath.length(); i++) {
-            char c = filePath.charAt(i);              // Get each character
-            filePathNumber += (c * scalingFactor);    // Multiply by a scaling factor (based on position)
-            scalingFactor = (scalingFactor * 7) % 1000; // Update scaling factor, bounded to prevent large values
+            char c = filePath.charAt(i);
+            filePathNumber += (c * scalingFactor);
+            scalingFactor = (scalingFactor * 7) % 1000;
         }
         int key = AppConfig.chordState.chordHash(filePathNumber);
 

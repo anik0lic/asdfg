@@ -4,6 +4,7 @@ import app.AppConfig;
 import servent.message.BackupMessage;
 import servent.message.Message;
 import servent.message.MessageType;
+import servent.message.util.MessageUtil;
 
 public class BackupHandler implements MessageHandler {
 
@@ -45,7 +46,15 @@ public class BackupHandler implements MessageHandler {
                 AppConfig.chordState.clearSuccessorValueMap();
                 AppConfig.chordState.setSuccessorValueMap(backupMessage.getFiles());
             }
-        } else {
+        } else if (backupMessage.getWhereToAdd().equals("succBack")) {
+            AppConfig.timestampedStandardPrint("Adding files to successor map: " + backupMessage.getFiles());
+
+            AppConfig.chordState.clearSuccessorValueMap();
+            AppConfig.chordState.setSuccessorValueMap(backupMessage.getFiles());
+
+            MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(), clientMessage.getSenderPort(), "add", "pred", AppConfig.chordState.getValueMap()));
+        }
+        else {
             AppConfig.timestampedErrorPrint("Unknown destination for backup: " + backupMessage.getWhereToAdd());
         }
     }

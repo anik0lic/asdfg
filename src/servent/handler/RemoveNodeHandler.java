@@ -36,7 +36,7 @@ public class RemoveNodeHandler implements MessageHandler {
             transferredKeys.forEach((key, value) -> {
                 AppConfig.chordState.getValueMap().put(key, value);
                 MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
-                        AppConfig.chordState.getPredecessor().getListenerPort(), "add", "succ", AppConfig.chordState.getValueMap()));
+                        AppConfig.chordState.getPredecessor().getListenerPort(), "add", "succBack", AppConfig.chordState.getValueMap()));
 
                 MessageUtil.sendMessage(new BackupMessage(AppConfig.myServentInfo.getListenerPort(),
                         AppConfig.chordState.getSuccessorTable()[0].getListenerPort(), "add", "pred", AppConfig.chordState.getValueMap()));

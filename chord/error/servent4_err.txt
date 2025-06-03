@@ -1,2 +1,2 @@
-22:17:30 - SEND_TOKEN handler received a message for a different chord ID: 28
-22:17:34 - Couldn't send message: [0|1600|8||LIST_FILES|1100|28]
+19:25:47 - SEND_TOKEN handler received a message for a different chord ID: 28
+19:25:52 - Couldn't send message: [0|1600|8||LIST_FILES|1100|28]
