@@ -1,0 +1,5 @@
+Exception in thread "Thread-1" java.lang.NullPointerException: Cannot invoke "app.ServentInfo.getListenerPort()" because the return value of "app.ChordState.getPredecessor()" is null
+	at app.FailureDetection.sendPingToPredecessor(FailureDetection.java:65)
+	at app.FailureDetection.run(FailureDetection.java:48)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+11:34:22 - Node 28 cannot release critical section, it does not have the token.

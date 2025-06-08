@@ -1,2 +1,6 @@
-19:25:47 - SEND_TOKEN handler received a message for a different chord ID: 28
-19:25:52 - Couldn't send message: [0|1600|8||LIST_FILES|1100|28]
+Exception in thread "Thread-1" java.lang.NullPointerException: Cannot invoke "app.ServentInfo.getListenerPort()" because the return value of "app.ChordState.getPredecessor()" is null
+	at app.FailureDetection.sendPingToPredecessor(FailureDetection.java:65)
+	at app.FailureDetection.run(FailureDetection.java:48)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+11:34:29 - Couldn't send message: [0|1600|6||LIST_FILES|1100|28]
+11:35:10 - Node 0 cannot release critical section, it does not have the token.

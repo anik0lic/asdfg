@@ -1,11 +1,12 @@
 package servent.handler;
 
 import app.AppConfig;
-import app.SuzukiKasamiState;
 import servent.message.Message;
 import servent.message.MessageType;
 import servent.message.SendTokenMessage;
-import servent.message.util.MessageUtil;
+
+import java.util.Arrays;
+import java.util.LinkedList;
 
 public class SendTokenHandler implements MessageHandler {
 
@@ -22,18 +23,23 @@ public class SendTokenHandler implements MessageHandler {
             return;
         }
 
-        synchronized (SuzukiKasamiState.lock) {
+        AppConfig.mutex.lock.lock() ;
+        try {
             SendTokenMessage sendTokenMessage = (SendTokenMessage) clientMessage;
 
-            if (sendTokenMessage.getChordId() != AppConfig.myServentInfo.getChordId()) {
-                AppConfig.timestampedErrorPrint("SEND_TOKEN handler received a message for a different chord ID: " + sendTokenMessage.getChordId());
-                MessageUtil.sendMessage(new SendTokenMessage(sendTokenMessage.getSenderPort(), AppConfig.chordState.getNextNodePort(),
-                        sendTokenMessage.getChordId(), sendTokenMessage.getTokenQueue(), sendTokenMessage.getLN()));
-                return;
-            }
+            AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getListenerPort() + " received SEND_TOKEN, LN: " + Arrays.toString(sendTokenMessage.getLN()) +
+                    ", requestQueue: " + sendTokenMessage.getRequestQueue());
 
-            AppConfig.timestampedStandardPrint("Received SEND_TOKEN message text: " + clientMessage.getMessageText());
-            AppConfig.mutex.receiveToken(sendTokenMessage.getLN(), sendTokenMessage.getTokenQueue());
+            AppConfig.mutex.setHasToken(true);
+            AppConfig.mutex.setLN(sendTokenMessage.getLN());
+            AppConfig.mutex.setRequestQueue(new LinkedList<>(sendTokenMessage.getRequestQueue()));
+
+            if (AppConfig.mutex.isWaiting()) {
+                AppConfig.timestampedStandardPrint("Node " + AppConfig.myServentInfo.getListenerPort() + " is notifying waiting threads.");
+                AppConfig.mutex.tokenCondition.signalAll();
+            }
+        } finally {
+            AppConfig.mutex.lock.unlock();
         }
     }
 }

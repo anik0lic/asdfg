@@ -1,178 +1,107 @@
-19:24:58 - Starting servent [4|localhost|1300]
-19:24:58 - Pausing for 30000 ms
-19:24:58 - Sending message NEW_NODE from 1300 to 1200 | 0 | 
-19:25:00 - Got message WELCOME from 1100 to 1300 | 2 | 
-19:25:01 - Sending message UPDATE from 1300 to 1100 | 1 | 
-19:25:02 - Got message UPDATE from 1300 to 1300 | 3 | 1100,1200
-19:25:10 - Got message NEW_NODE from 1400 to 1300 | 4 | 
-19:25:11 - Sending message NEW_NODE from 1400 to 1100 | 2 | 
-19:25:15 - Got message UPDATE from 1400 to 1300 | 5 | 1100,1200
-19:25:16 - Sending message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
-19:25:21 - Got message BACKUP from 1400 to 1300 | 2 | add
-19:25:21 - Adding files to successor map: {23=media/image.png}
-19:25:21 - Got message NEW_NODE from 1600 to 1300 | 6 | 
-19:25:22 - Sending message WELCOME from 1300 to 1600 | 4 | 
-19:25:24 - Got message UPDATE from 1600 to 1300 | 1 | 
-19:25:24 - Sending message UPDATE from 1600 to 1400 | 5 | 1300
-19:25:28 - Visibility set to public.
-19:25:28 - Pausing for 13000 ms
-19:25:32 - Got message LIST_FILES from 1400 to 1300 | 5 | 
-19:25:32 - No files found in the directory for node 1300 sending empty response to 1400
-19:25:33 - Sending message LIST_FILES_RESPONSE from 1300 to 1400 | 6 | null
-19:25:41 - Node 1400 added as a pending follower for node: 1300
-19:25:41 - Pausing for 10000 ms
-19:25:42 - Got message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
-19:25:43 - Sending message PUT from 1300 to 1400 | 7 | 13:videos/video.mp4
-19:25:44 - Got message BACKUP from 1400 to 1300 | 7 | add
-19:25:44 - Adding files to successor map: {23=media/image.png, 13=videos/video.mp4}
-19:25:48 - Got message SEND_TOKEN from 1100 to 1300 | 4 | 
-19:25:49 - Got message TOKEN_REQUEST from 1200 to 1300 | 5 | 
-19:25:49 - Sending token request for chord ID: 48 with request number: 1 and sequence number: 1
-19:25:50 - Sending message SEND_TOKEN from 1100 to 1400 | 8 | 
-19:25:50 - Got message TOKEN_REQUEST from 1600 to 1300 | 6 | 
-19:25:50 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
-19:25:50 - Got message REMOVING_UPDATE from 1100 to 1300 | 7 | 1200
-19:25:50 - REMOVING UPDATE handler got message from 1100 with text: 1200
-19:25:50 - Node 4 requesting critical section with RN[4] = 1
-19:25:50 - Node 4 has acquired the token and can enter the critical section.
-19:25:50 - Removing node: 1100
-19:25:50 - allNodeInfo before removal: [[24|localhost|1400], [28|localhost|1100], [48|localhost|1200], [0|localhost|1600]]
-19:25:50 - Removing node: 1100 with chordId: 28
-19:25:50 - allNodeInfo after removal: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
-19:25:50 - allNodeInfo after sorting: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
-19:25:50 - Successor table before update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
-19:25:50 - Successor table after update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
-19:25:50 - Node 4 released critical section
-19:25:50 - Released token after removing node.
-19:25:51 - Sending message TOKEN_REQUEST from 1200 to 1400 | 9 | 
-19:25:51 - Sending message REMOVING_UPDATE from 1100 to 1400 | 12 | 1200
-19:25:51 - Sending message TOKEN_REQUEST from 1600 to 1400 | 10 | 
-19:25:51 - Pausing for 10000 ms
-19:25:51 - Sending message TOKEN_REQUEST from 1300 to 1400 | 11 | 
-19:25:51 - Sending message PUT from 1300 to 1400 | 13 | 37:shared/third.txt
-19:25:53 - Got message TOKEN_REQUEST from 1600 to 1300 | 9 | 
-19:25:53 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
-19:25:53 - Sending message TOKEN_REQUEST from 1600 to 1400 | 14 | 
-19:25:54 - Got message TOKEN_REQUEST from 1300 to 1300 | 10 | 
-19:25:54 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
-19:25:56 - Sending message TOKEN_REQUEST from 1300 to 1400 | 15 | 
-19:25:56 - Got message TOKEN_REQUEST from 1600 to 1300 | 11 | 
-19:25:56 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
-19:25:58 - Sending message TOKEN_REQUEST from 1600 to 1400 | 16 | 
-19:25:59 - Got message TOKEN_REQUEST from 1300 to 1300 | 12 | 
-19:25:59 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
-19:26:00 - Sending message TOKEN_REQUEST from 1300 to 1400 | 17 | 
-19:26:01 - Got message TOKEN_REQUEST from 1600 to 1300 | 13 | 
-19:26:01 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
-19:26:01 - Node 1600 added as a pending follower for node: 1300
-19:26:01 - Pausing for 3000 ms
-19:26:02 - Sending message TOKEN_REQUEST from 1600 to 1400 | 18 | 
-19:26:03 - Got message TOKEN_REQUEST from 1300 to 1300 | 14 | 
-19:26:03 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
-19:26:04 - Sending message to node 1200 to list files, from node 1300
-19:26:04 - Pausing for 12000 ms
-19:26:04 - Sending message TOKEN_REQUEST from 1300 to 1400 | 19 | 
-19:26:04 - Sending message LIST_FILES from 1300 to 1200 | 20 | 
-19:26:04 - Got message TOKEN_REQUEST from 1600 to 1300 | 15 | 
-19:26:04 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
-19:26:05 - Sending message TOKEN_REQUEST from 1600 to 1400 | 21 | 
-19:26:07 - Got message TOKEN_REQUEST from 1300 to 1300 | 16 | 
-19:26:07 - Sending token request for chord ID: 4 with request number: 1 and sequence number: 1
-19:26:08 - Got message TOKEN_REQUEST from 1600 to 1300 | 17 | 
-19:26:08 - Sending token request for chord ID: 0 with request number: 1 and sequence number: 1
-19:26:08 - Sending message TOKEN_REQUEST from 1300 to 1400 | 22 | 
-19:26:08 - Got message BACKUP from 1200 to 1300 | 29 | add
-19:26:08 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:08 - Sending message TOKEN_REQUEST from 1600 to 1400 | 23 | 
-19:26:09 - Got message BACKUP from 1200 to 1300 | 31 | add
-19:26:09 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:09 - Sending message BACKUP from 1300 to 1200 | 24 | add
-19:26:10 - Sending message BACKUP from 1300 to 1200 | 25 | add
-19:26:10 - Got message TOKEN_REQUEST from 1600 to 1300 | 18 | 
-19:26:10 - Sending token request for chord ID: 0 with request number: 2 and sequence number: 2
-19:26:10 - Got message TOKEN_REQUEST from 1200 to 1300 | 19 | 
-19:26:10 - Sending token request for chord ID: 48 with request number: 2 and sequence number: 2
-19:26:11 - Sending message TOKEN_REQUEST from 1200 to 1400 | 27 | 
-19:26:11 - Sending message TOKEN_REQUEST from 1600 to 1400 | 26 | 
-19:26:14 - Got message BACKUP from 1600 to 1300 | 26 | add
-19:26:14 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:14 - Got message BACKUP from 1600 to 1300 | 25 | add
-19:26:14 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:14 - Got message BACKUP from 1600 to 1300 | 29 | add
-19:26:14 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:14 - Got message BACKUP from 1600 to 1300 | 20 | add
-19:26:14 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:14 - Sending message BACKUP from 1300 to 1600 | 28 | add
-19:26:14 - Got message BACKUP from 1600 to 1300 | 24 | add
-19:26:14 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:15 - Got message BACKUP from 1600 to 1300 | 22 | add
-19:26:15 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:15 - Got message BACKUP from 1600 to 1300 | 28 | add
-19:26:15 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:15 - Got message BACKUP from 1600 to 1300 | 21 | add
-19:26:15 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:15 - Got message BACKUP from 1600 to 1300 | 23 | add
-19:26:15 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:15 - Got message BACKUP from 1600 to 1300 | 27 | add
-19:26:15 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:15 - Sending message BACKUP from 1300 to 1600 | 29 | add
-19:26:15 - Got message REMOVE_NODE from 1600 to 1300 | 31 | 
-19:26:15 - 1300 is taking over responsibilities from node: 1600
-19:26:15 - New predecessor is: 1300
-19:26:15 - Added key: 37, value: shared/third.txt
-19:26:15 - Added key: 38, value: files/fajl1.txt
-19:26:15 - Added key: 23, value: media/image.png
-19:26:15 - Added key: 26, value: docs/data2.txt
-19:26:15 - Added key: 13, value: videos/video.mp4
-19:26:15 - Sending message BACKUP from 1300 to 1300 | 37 | add
-19:26:15 - Sending message BACKUP from 1300 to 1400 | 40 | add
-19:26:15 - Got message BACKUP from 1300 to 1300 | 37 | add
-19:26:15 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:16 - Sending message BACKUP from 1300 to 1600 | 31 | add
-19:26:16 - Sending message BACKUP from 1300 to 1300 | 33 | add
-19:26:16 - Sending message BACKUP from 1300 to 1600 | 32 | add
-19:26:16 - Got message BACKUP from 1300 to 1300 | 33 | add
-19:26:16 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:16 - Sending message BACKUP from 1300 to 1300 | 39 | add
-19:26:16 - Got message BACKUP from 1300 to 1300 | 39 | add
-19:26:16 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:16 - Sending message BACKUP from 1300 to 1300 | 41 | add
-19:26:16 - Got message BACKUP from 1300 to 1300 | 41 | add
-19:26:16 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:16 - Accepted follower: 1400
-19:26:16 - Pausing for 10000 ms
-19:26:16 - Sending message BACKUP from 1300 to 1600 | 30 | add
-19:26:16 - Sending message BACKUP from 1300 to 1400 | 36 | add
-19:26:16 - Sending message BACKUP from 1300 to 1400 | 38 | add
-19:26:16 - Sending message BACKUP from 1300 to 1300 | 35 | add
-19:26:16 - Got message BACKUP from 1300 to 1300 | 35 | add
-19:26:16 - Adding files to successor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:16 - Sending message BACKUP from 1300 to 1400 | 34 | add
-19:26:16 - Sending message BACKUP from 1300 to 1300 | 46 | add
-19:26:16 - Got message BACKUP from 1300 to 1300 | 46 | add
-19:26:16 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:16 - Sending message REMOVING_UPDATE from 1600 to 1300 | 43 | 
-19:26:16 - Got message REMOVING_UPDATE from 1600 to 1300 | 43 | 
-19:26:16 - REMOVING UPDATE handler got message from 1600 with text: 
-19:26:16 - Node 4 requesting critical section with RN[4] = 2
-19:26:16 - Sending message BACKUP from 1300 to 1400 | 42 | add
-19:26:16 - Sending message BACKUP from 1300 to 1300 | 45 | add
-19:26:16 - Got message BACKUP from 1300 to 1300 | 45 | add
-19:26:16 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:17 - Sending message BACKUP from 1300 to 1300 | 47 | add
-19:26:17 - Got message BACKUP from 1300 to 1300 | 47 | add
-19:26:17 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:17 - Sending message BACKUP from 1300 to 1300 | 44 | add
-19:26:17 - Got message BACKUP from 1300 to 1300 | 44 | add
-19:26:17 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:17 - Sending message BACKUP from 1300 to 1300 | 48 | add
-19:26:17 - Got message BACKUP from 1300 to 1300 | 48 | add
-19:26:17 - Adding files to predecessor map: {37=shared/third.txt, 38=files/fajl1.txt, 23=media/image.png, 26=docs/data2.txt, 13=videos/video.mp4}
-19:26:17 - Sending message TOKEN_REQUEST from 1300 to 1400 | 49 | 
-19:26:26 - Pending followers: [1600]
-19:26:26 - Followers: [1400]
-19:26:26 - Pausing for 10000 ms
-19:26:36 - Transferring responsibilities to successor at port 1400
-19:26:36 - Stopping...
-19:26:36 - Node at port 1300 has stopped.
-19:26:36 - Sending message REMOVE_NODE from 1300 to 1400 | 50 | 
+11:33:34 - Starting servent [4|localhost|1300]
+11:33:34 - Pausing for 30000 ms
+11:33:35 - Sending message NEW_NODE from 1300 to 1200 | 0 | 
+11:33:38 - Got message WELCOME from 1100 to 1300 | 2 | 
+11:33:39 - Sending message UPDATE from 1300 to 1100 | 1 | 
+11:33:41 - Got message UPDATE from 1300 to 1300 | 3 | 1100,1200
+11:33:45 - Got message NEW_NODE from 1400 to 1300 | 0 | 
+11:33:46 - Sending message NEW_NODE from 1400 to 1100 | 2 | 
+11:33:50 - Got message UPDATE from 1400 to 1300 | 4 | 1100,1200
+11:33:51 - Sending message UPDATE from 1400 to 1400 | 3 | 1100,1200,1300
+11:33:55 - Got message NEW_NODE from 1600 to 1300 | 0 | 
+11:33:56 - Sending message WELCOME from 1300 to 1600 | 4 | 
+11:33:57 - Got message UPDATE from 1600 to 1300 | 1 | 
+11:33:57 - Got message BACKUP from 1400 to 1300 | 2 | add
+11:33:57 - Adding files to successor map: {23=media/image.png}
+11:33:58 - Sending message UPDATE from 1600 to 1400 | 5 | 1300
+11:34:04 - Visibility set to public.
+11:34:04 - Pausing for 13000 ms
+11:34:09 - Got message LIST_FILES from 1400 to 1300 | 5 | 
+11:34:09 - No files found in the directory for node 1300 sending empty response to 1400
+11:34:10 - Sending message LIST_FILES_RESPONSE from 1300 to 1400 | 6 | null
+11:34:17 - Node 1400 added as a pending follower for node: 1300
+11:34:17 - Pausing for 10000 ms
+11:34:18 - Got message PUT from 1600 to 1300 | 3 | 13:videos/video.mp4
+11:34:20 - Sending message PUT from 1300 to 1400 | 7 | 13:videos/video.mp4
+11:34:21 - Got message BACKUP from 1400 to 1300 | 7 | add
+11:34:21 - Adding files to successor map: {23=media/image.png, 13=videos/video.mp4}
+11:34:25 - Got message TOKEN_REQUEST from 1200 to 1300 | 4 | 
+11:34:25 - Token not here (1300), sending token request to: 1400 with request number: 1 and sequence number: 1
+11:34:26 - Sending message TOKEN_REQUEST from 1200 to 1400 | 8 | 
+11:34:27 - Got message REMOVING_UPDATE from 1100 to 1300 | 5 | 1200
+11:34:27 - REMOVING UPDATE handler got message from 1100 with text: 1200
+11:34:27 - Removing node: 1100
+11:34:27 - allNodeInfo before removal: [[24|localhost|1400], [28|localhost|1100], [48|localhost|1200], [0|localhost|1600]]
+11:34:27 - Removing node: 1100 with chordId: 28
+11:34:27 - allNodeInfo after removal: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
+11:34:27 - allNodeInfo after sorting: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
+11:34:27 - Successor table before update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+11:34:27 - Successor table after update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+11:34:27 - Pausing for 10000 ms
+11:34:28 - Sending message PUT from 1300 to 1400 | 10 | 37:shared/third.txt
+11:34:28 - Sending message REMOVING_UPDATE from 1100 to 1400 | 9 | 1200
+11:34:37 - Node 1600 added as a pending follower for node: 1300
+11:34:37 - Pausing for 3000 ms
+11:34:40 - Sending message to node 1200 to list files, from node 1300
+11:34:40 - Pausing for 12000 ms
+11:34:41 - Sending message LIST_FILES from 1300 to 1200 | 11 | 
+11:34:52 - Accepted follower: 1400
+11:34:52 - Pausing for 10000 ms
+11:35:02 - Got message BACKUP from 1600 to 1300 | 8 | add
+11:35:02 - Adding files to predecessor map: {38=files/fajl1.txt, 26=docs/data2.txt}
+11:35:02 - Got message BACKUP from 1600 to 1300 | 10 | add
+11:35:02 - Adding files to predecessor map: {38=files/fajl1.txt, 26=docs/data2.txt}
+11:35:02 - Pending followers: [1600]
+11:35:02 - Followers: [1400]
+11:35:02 - Pausing for 30000 ms
+11:35:02 - Got message REMOVING_UPDATE from 1200 to 1300 | 12 | 1600
+11:35:02 - REMOVING UPDATE handler got message from 1200 with text: 1600
+11:35:02 - Removing node: 1200
+11:35:02 - allNodeInfo before removal: [[24|localhost|1400], [48|localhost|1200], [0|localhost|1600]]
+11:35:02 - Removing node: 1200 with chordId: 48
+11:35:02 - allNodeInfo after removal: [[24|localhost|1400], [0|localhost|1600]]
+11:35:02 - allNodeInfo after sorting: [[24|localhost|1400], [0|localhost|1600]]
+11:35:02 - Successor table before update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [48|localhost|1200]]
+11:35:02 - Successor table after update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [0|localhost|1600]]
+11:35:04 - Sending message REMOVING_UPDATE from 1200 to 1400 | 12 | 1600
+11:35:11 - Got message SEND_TOKEN from 1600 to 1300 | 13 | 
+11:35:11 - Node 1300 received SEND_TOKEN, LN: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], requestQueue: []
+11:35:11 - Node 4 had token: false now has token: true
+11:35:11 - Got message REMOVE_NODE from 1600 to 1300 | 14 | 
+11:35:11 - Node 4 already have token, entering critical section.
+11:35:11 - 1300 is taking over responsibilities from node: 1600
+11:35:11 - New predecessor is: 1400
+11:35:11 - Added key: 38, value: files/fajl1.txt
+11:35:11 - Added key: 26, value: docs/data2.txt
+11:35:11 - Node 4 is releasing the critical section.
+11:35:11 - Node 4 has no more requests in the queue, keeping the token.
+11:35:12 - Sending message BACKUP from 1300 to 1400 | 15 | add
+11:35:12 - Sending message BACKUP from 1300 to 1400 | 16 | add
+11:35:12 - Sending message REMOVING_UPDATE from 1600 to 1300 | 17 | 
+11:35:12 - Got message REMOVING_UPDATE from 1600 to 1300 | 17 | 
+11:35:12 - REMOVING UPDATE handler got message from 1600 with text: 
+11:35:12 - Removing node: 1600
+11:35:12 - allNodeInfo before removal: [[24|localhost|1400], [0|localhost|1600]]
+11:35:12 - Removing node: 1600 with chordId: 0
+11:35:12 - allNodeInfo after removal: [[24|localhost|1400]]
+11:35:12 - Removed pending follower: 1600
+11:35:12 - allNodeInfo after sorting: [[24|localhost|1400]]
+11:35:12 - Successor table before update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [0|localhost|1600]]
+11:35:12 - Successor table after update: [[24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400], [24|localhost|1400]]
+11:35:13 - Sending message BACKUP from 1300 to 1400 | 13 | add
+11:35:13 - Sending message BACKUP from 1300 to 1400 | 14 | add
+11:35:13 - Got message BACKUP from 1400 to 1300 | 19 | add
+11:35:13 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
+11:35:14 - Got message BACKUP from 1400 to 1300 | 18 | add
+11:35:14 - Adding files to predecessor map: {23=media/image.png, 13=videos/video.mp4}
+11:35:14 - Sending message REMOVING_UPDATE from 1600 to 1400 | 18 | 1300
+11:35:15 - Got message REMOVING_UPDATE from 1600 to 1300 | 20 | 1300
+11:35:15 - REMOVING UPDATE handler got message from 1600 with text: 1300
+11:35:15 - End of removing update chain reached for port: 1600
+11:35:32 - Node 4 already have token, entering critical section.
+11:35:32 - Transferring token to successor before stopping...
+11:35:32 - Transferring responsibilities to successor at port 1400
+11:35:32 - Stopping...
+11:35:32 - Node at port 1300 has stopped.
+11:35:33 - Sending message REMOVE_NODE from 1300 to 1400 | 20 | 
+11:35:33 - Sending message SEND_TOKEN from 1300 to 1400 | 19 | 

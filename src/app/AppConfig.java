@@ -48,6 +48,7 @@ public class AppConfig {
 	
 	public static ChordState chordState;
 	public static SuzukiKasamiState mutex;
+	public static FailureDetection failureDetection;
 	
 	/**
 	 * Reads a config file. Should be called once at start of app.

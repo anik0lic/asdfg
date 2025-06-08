@@ -13,5 +13,5 @@ accept 1400
 pause 10000
 pending
 followers
-pause 10000
+pause 30000
 stop

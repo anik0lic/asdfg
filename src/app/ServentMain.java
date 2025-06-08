@@ -50,6 +50,11 @@ public class ServentMain {
 		SimpleServentListener simpleListener = new SimpleServentListener();
 		Thread listenerThread = new Thread(simpleListener);
 		listenerThread.start();
+
+		AppConfig.failureDetection = new FailureDetection();
+		Thread hbThread = new Thread(AppConfig.failureDetection);
+		hbThread.setDaemon(true);
+		hbThread.start();
 		
 		CLIParser cliParser = new CLIParser(simpleListener);
 		Thread cliThread = new Thread(cliParser);

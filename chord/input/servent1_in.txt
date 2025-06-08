@@ -9,5 +9,5 @@ list_files 1400
 pause 10000
 pending
 followers
-pause 12000
+pause 22000
 stop

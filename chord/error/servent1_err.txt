@@ -1,2 +1,6 @@
-19:25:46 - SEND_TOKEN handler received a message for a different chord ID: 28
-19:26:04 - Access denied to Node 1300
+Exception in thread "Thread-1" java.lang.NullPointerException: Cannot invoke "app.ServentInfo.getListenerPort()" because the return value of "app.ChordState.getPredecessor()" is null
+	at app.FailureDetection.sendPingToPredecessor(FailureDetection.java:65)
+	at app.FailureDetection.run(FailureDetection.java:48)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+11:34:41 - Access denied to Node 1300
+11:34:59 - Node 48 cannot release critical section, it does not have the token.

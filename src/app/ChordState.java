@@ -57,7 +57,7 @@ public class ChordState {
 
 	private boolean visibility;
 
-	private SuzukiKasamiState suzukiKasamiState;
+//	private SuzukiKasamiState suzukiKasamiState;
 
 	public ChordState() {
 		this.chordLevel = 1;
@@ -82,7 +82,7 @@ public class ChordState {
 		followers = ConcurrentHashMap.newKeySet();
 		visibility = true;
 
-		suzukiKasamiState = new SuzukiKasamiState();
+//		suzukiKasamiState = new SuzukiKasamiState();
 	}
 	
 	/**
@@ -164,8 +164,12 @@ public class ChordState {
 
 	public boolean isVisibility() { return visibility; }
 	public void setVisibility(boolean visibility) { this.visibility = visibility; }
-	
-	public boolean isCollision(int chordId) {
+
+    public List<ServentInfo> getAllNodeInfo() {
+        return allNodeInfo;
+    }
+
+    public boolean isCollision(int chordId) {
 		if (chordId == AppConfig.myServentInfo.getChordId()) {
 			return true;
 		}
@@ -311,106 +315,88 @@ public class ChordState {
 	 * 
 	 */
 	public void addNodes(List<ServentInfo> newNodes) {
-//		AppConfig.mutex.requestCriticalSection();
-//		try {
+		allNodeInfo.addAll(newNodes);
 
-			allNodeInfo.addAll(newNodes);
+		allNodeInfo.sort(new Comparator<ServentInfo>() {
 
-			allNodeInfo.sort(new Comparator<ServentInfo>() {
-
-				@Override
-				public int compare(ServentInfo o1, ServentInfo o2) {
-					return o1.getChordId() - o2.getChordId();
-				}
-
-			});
-
-			List<ServentInfo> newList = new ArrayList<>();
-			List<ServentInfo> newList2 = new ArrayList<>();
-
-			int myId = AppConfig.myServentInfo.getChordId();
-			for (ServentInfo serventInfo : allNodeInfo) {
-				if (serventInfo.getChordId() < myId) {
-					newList2.add(serventInfo);
-				} else {
-					newList.add(serventInfo);
-				}
+			@Override
+			public int compare(ServentInfo o1, ServentInfo o2) {
+				return o1.getChordId() - o2.getChordId();
 			}
 
-			allNodeInfo.clear();
-			allNodeInfo.addAll(newList);
-			allNodeInfo.addAll(newList2);
-			if (newList2.size() > 0) {
-				predecessorInfo = newList2.get(newList2.size() - 1);
+		});
+
+		List<ServentInfo> newList = new ArrayList<>();
+		List<ServentInfo> newList2 = new ArrayList<>();
+
+		int myId = AppConfig.myServentInfo.getChordId();
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getChordId() < myId) {
+				newList2.add(serventInfo);
 			} else {
-				predecessorInfo = newList.get(newList.size() - 1);
+				newList.add(serventInfo);
 			}
+		}
 
-			updateSuccessorTable();
-//		}
-//		finally {
-//			// Release the token after completing the critical section.
-//			AppConfig.mutex.releaseCriticalSection();
-//			AppConfig.timestampedStandardPrint("Released token after adding nodes.");
-//		}
+		allNodeInfo.clear();
+		allNodeInfo.addAll(newList);
+		allNodeInfo.addAll(newList2);
+		if (newList2.size() > 0) {
+			predecessorInfo = newList2.get(newList2.size() - 1);
+		} else {
+			predecessorInfo = newList.get(newList.size() - 1);
+		}
 
+		updateSuccessorTable();
 	}
 
 	public void removeNode(ServentInfo removedNode) {
-		AppConfig.mutex.requestCriticalSection();
+		AppConfig.timestampedStandardPrint("Removing node: " + removedNode.getListenerPort());
 
-		try {
-			AppConfig.timestampedStandardPrint("Removing node: " + removedNode.getListenerPort());
+		AppConfig.timestampedStandardPrint("allNodeInfo before removal: " + allNodeInfo);
 
-			AppConfig.timestampedStandardPrint("allNodeInfo before removal: " + allNodeInfo);
-
-			for (ServentInfo s : allNodeInfo) {
-				if (s.getListenerPort() == removedNode.getListenerPort()) {
-					AppConfig.timestampedStandardPrint("Removing node: " + s.getListenerPort() + " with chordId: " + s.getChordId());
-					allNodeInfo.remove(s);
-					break;
-				}
+		for (ServentInfo s : allNodeInfo) {
+			if (s.getListenerPort() == removedNode.getListenerPort()) {
+				AppConfig.timestampedStandardPrint("Removing node: " + s.getListenerPort() + " with chordId: " + s.getChordId());
+				allNodeInfo.remove(s);
+				break;
 			}
-			AppConfig.timestampedStandardPrint("allNodeInfo after removal: " + allNodeInfo);
-
-			if (followers.remove(removedNode.getListenerPort())) {
-				AppConfig.timestampedStandardPrint("Removed follower: " + removedNode.getListenerPort());
-			}
-
-			if (pendingFollowers.remove(removedNode.getListenerPort())) {
-				AppConfig.timestampedStandardPrint("Removed pending follower: " + removedNode.getListenerPort());
-			}
-
-			List<ServentInfo> newList = new ArrayList<>();
-			List<ServentInfo> newList2 = new ArrayList<>();
-
-			int myId = AppConfig.myServentInfo.getChordId();
-			for (ServentInfo serventInfo : allNodeInfo) {
-				if (serventInfo.getChordId() < myId) {
-					newList2.add(serventInfo);
-				} else {
-					newList.add(serventInfo);
-				}
-			}
-
-			allNodeInfo.clear();
-			allNodeInfo.addAll(newList);
-			allNodeInfo.addAll(newList2);
-			AppConfig.timestampedStandardPrint("allNodeInfo after sorting: " + allNodeInfo);
-			if (newList2.size() > 0) {
-				predecessorInfo = newList2.get(newList2.size() - 1);
-			} else {
-				predecessorInfo = newList.get(newList.size() - 1);
-			}
-
-			AppConfig.timestampedStandardPrint("Successor table before update: " + Arrays.toString(successorTable));
-			updateSuccessorTable();
-			AppConfig.timestampedStandardPrint("Successor table after update: " + Arrays.toString(successorTable));
-		} finally {
-			// Release the token after completing the critical section.
-			AppConfig.mutex.releaseCriticalSection();
-			AppConfig.timestampedStandardPrint("Released token after removing node.");
 		}
+		AppConfig.timestampedStandardPrint("allNodeInfo after removal: " + allNodeInfo);
+
+		if (followers.remove(removedNode.getListenerPort())) {
+			AppConfig.timestampedStandardPrint("Removed follower: " + removedNode.getListenerPort());
+		}
+
+		if (pendingFollowers.remove(removedNode.getListenerPort())) {
+			AppConfig.timestampedStandardPrint("Removed pending follower: " + removedNode.getListenerPort());
+		}
+
+		List<ServentInfo> newList = new ArrayList<>();
+		List<ServentInfo> newList2 = new ArrayList<>();
+
+		int myId = AppConfig.myServentInfo.getChordId();
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getChordId() < myId) {
+				newList2.add(serventInfo);
+			} else {
+				newList.add(serventInfo);
+			}
+		}
+
+		allNodeInfo.clear();
+		allNodeInfo.addAll(newList);
+		allNodeInfo.addAll(newList2);
+		AppConfig.timestampedStandardPrint("allNodeInfo after sorting: " + allNodeInfo);
+		if (newList2.size() > 0) {
+			predecessorInfo = newList2.get(newList2.size() - 1);
+		} else {
+			predecessorInfo = newList.get(newList.size() - 1);
+		}
+
+		AppConfig.timestampedStandardPrint("Successor table before update: " + Arrays.toString(successorTable));
+		updateSuccessorTable();
+		AppConfig.timestampedStandardPrint("Successor table after update: " + Arrays.toString(successorTable));
 	}
 
 

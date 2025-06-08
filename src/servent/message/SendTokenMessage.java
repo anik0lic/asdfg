@@ -5,14 +5,14 @@ import java.util.Queue;
 public class SendTokenMessage extends BasicMessage {
 
     private int chordId;
-    private Queue<Integer> tokenQueue;
+    private Queue<Integer> requestQueue;
     private int[] LN;
 
-    public SendTokenMessage(int senderPort, int receiverPort, int chordId, Queue<Integer> tokenQueue, int[] LN) {
+    public SendTokenMessage(int senderPort, int receiverPort, int chordId, Queue<Integer> requestQueue, int[] LN) {
         super(MessageType.SEND_TOKEN, senderPort, receiverPort);
 
         this.chordId = chordId;
-        this.tokenQueue = tokenQueue;
+        this.requestQueue = requestQueue;
         this.LN = LN;
     }
 
@@ -20,8 +20,8 @@ public class SendTokenMessage extends BasicMessage {
         return chordId;
     }
 
-    public Queue<Integer> getTokenQueue() {
-        return tokenQueue;
+    public Queue<Integer> getRequestQueue() {
+        return requestQueue;
     }
 
     public int[] getLN() {
